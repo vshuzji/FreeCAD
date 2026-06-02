@@ -1,7 +1,6 @@
 # As of February 2025 we require CMake 3.22.0
 cmake_minimum_required(VERSION 3.22.0 FATAL_ERROR)
 
-
 # As of cMake 3.27, find_package() will look for both case-sensitive and all-uppercase versions
 # of the package. This seems to affect FLANN as included by Pixi
 if(POLICY CMP0144)
@@ -38,6 +37,14 @@ endif()
 
 
 option(FREECAD_USE_CCACHE "Auto detect and use ccache during compilation" ON)
+
+
+set(VTK_MODULE_ENABLE_VTK_hdf5 OFF)
+set(VTK_MODULE_ENABLE_VTK_GUISupport OFF)
+
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 if(FREECAD_USE_CCACHE)
     find_program(CCACHE_PROGRAM ccache)  #This check should occur before project()
@@ -118,7 +125,12 @@ if(NOT FREECAD_LIBPACK_USE OR FREECAD_LIBPACK_CHECKFILE_CLBUNDLER OR FREECAD_LIB
         # OPENGL_gl_LIBRARY empty that results into linker errors
         SetupOpenGL()
     endif(BUILD_GUI)
-    SetupSalomeSMESH()
+    if(BUILD_SMESH AND NOT WIN32)
+		SetupSalomeSMESH()
+	elseif(BUILD_SMESH AND WIN32)
+		message(STATUS "Using internal SMESH (patched)")
+		set(BUILD_SMESH ON)
+	endif()
     if (BUILD_FEM_NETGEN)
         set(NETGEN_DEFINITIONS -DNO_PARALLEL_THREADS -DOCCGEOMETRY)
         if (NOT FREECAD_USE_EXTERNAL_SMESH)
@@ -135,8 +147,8 @@ if(NOT FREECAD_LIBPACK_USE OR FREECAD_LIBPACK_CHECKFILE_CLBUNDLER OR FREECAD_LIB
     SetupFreetype()
 
     if(BUILD_GUI)
-        SetupCoin3D()
-        SetupPivy()
+		add_subdirectory(src/3rdParty/Coin3D)
+		add_subdirectory(src/3rdParty/pivy)
         SetupSpaceball()
         SetupShibokenAndPyside()
         SetupMatplotlib()

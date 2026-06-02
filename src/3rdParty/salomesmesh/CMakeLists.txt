@@ -1,5 +1,5 @@
-
-set(CMAKE_AUTOMOC FALSE)
+# 关闭本目录AUTOMOC，杜绝Qt CMake污染构建目录标记（冲突根源）
+set(CMAKE_AUTOMOC OFF CACHE INTERNAL "Disable Qt AUTOMOC for salomesmesh")
 
 SET(SMESH_VERSION_MAJOR 7)  # see main CMakeLists.txt of FreeCAD
 SET(SMESH_VERSION_MINOR 7)
@@ -11,27 +11,23 @@ if(CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_CXX_FLAGS " ${CMAKE_CXX_FLAGS} -Wno-sign-compare -Wno-reorder -Wno-switch -Wno-unused-variable -Wno-unused-but-set-variable -Wno-comment -Wno-unused-parameter -Wno-empty-body -Wno-pedantic")
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-unused-variable -Wno-unused-but-set-variable")
 
-    unset(_flag_found CACHE)
     check_cxx_compiler_flag("-Wno-unused-result" _flag_found)
     if (_flag_found)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-result")
         set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-unused-result")
     endif ()
 
-    unset(_flag_found CACHE)
     check_cxx_compiler_flag("-Wno-cast-function-type" _flag_found)
     if (_flag_found)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-cast-function-type")
         set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-cast-function-type")
     endif ()
 
-    unset(_flag_found CACHE)
     check_cxx_compiler_flag("-Wno-maybe-uninitialized" _flag_found)
     if (_flag_found)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-maybe-uninitialized")
     endif ()
 
-    unset(_flag_found CACHE)
     check_cxx_compiler_flag("-Wno-missing-field-initializers" _flag_found)
     if (_flag_found)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-missing-field-initializers")
@@ -42,19 +38,16 @@ elseif(CMAKE_COMPILER_IS_CLANGXX)
     set(CMAKE_CXX_FLAGS " ${CMAKE_CXX_FLAGS} -Wno-self-assign -Wno-sign-compare -Wno-logical-op-parentheses -Wno-reorder -Wno-switch -Wno-switch-enum -Wno-unknown-pragmas -Wno-unused-variable -Wno-unused-private-field")
     set(CMAKE_CXX_FLAGS " ${CMAKE_CXX_FLAGS} -Wno-unused-function -Wno-sometimes-uninitialized -Wno-overloaded-virtual -Wno-dynamic-class-memaccess -Wno-comment -Wno-unused-parameter -Wno-extra-semi")
 
-    unset(_flag_found CACHE)
     check_cxx_compiler_flag("-Wno-deprecated-copy" _flag_found)
     if (_flag_found)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated-copy")
     endif ()
 
-    unset(_flag_found CACHE)
     check_cxx_compiler_flag("-Wno-missing-field-initializers" _flag_found)
     if (_flag_found)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-missing-field-initializers")
     endif ()
 
-    unset(_flag_found CACHE)
     check_cxx_compiler_flag("-Wno-c++17-extensions" _flag_found)
     if (_flag_found)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-c++17-extensions")
@@ -89,6 +82,7 @@ include_directories(
 )
 link_directories(${OCC_LIBRARY_DIR})
 
+# MSVC运行时与基础链接库统一整理
 if(MSVC)
     if(BUILD_FEM_NETGEN)
         set(SMESH_LIBS
@@ -146,7 +140,6 @@ endif(MSVC)
 
 SET(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib)
 
-
 ############################
 # Check 32/64 bit platform #
 ############################
@@ -156,9 +149,7 @@ IF (${CMAKE_SIZEOF_VOID_P} MATCHES "8") # It is 64bit, 32 bit systems returns 4
     # 0001715: Mefisto Mesh Fails since translated by f2c
     #    ADD_DEFINITIONS(-DPCLINUX64)
     ENDIF(CMAKE_COMPILER_IS_GNUCXX)
-    #MESSAGE("-- Build 64bit")
 ELSE (${CMAKE_SIZEOF_VOID_P} MATCHES "8")
-    #MESSAGE("-- Build 32bit")
 ENDIF(${CMAKE_SIZEOF_VOID_P} MATCHES "8")
 
 ######################################################
@@ -191,7 +182,6 @@ SET_BIN_DIR(SMDS SMDS)
 if(WIN32)
     set_target_properties(SMDS PROPERTIES COMPILE_FLAGS "-DSMDS_EXPORTS -DUTILS_EXPORTS")
 endif(WIN32)
-
 
 ##########
 # Driver #
@@ -278,7 +268,6 @@ SET_BIN_DIR(MEFISTO2 MEFISTO2)
 TARGET_LINK_LIBRARIES(MEFISTO2 ${SMESH_LIBS}) # in case of Windows link the prebuild Fortran lib
 set_target_properties(MEFISTO2 PROPERTIES COMPILE_FLAGS "-DMEFISTO2D_EXPORTS")
 
-
 ##############
 # StdMeshers #
 ##############
@@ -337,4 +326,3 @@ if (BUILD_FEM_NETGEN)
         )
     endif(WIN32)
 endif (BUILD_FEM_NETGEN)
-

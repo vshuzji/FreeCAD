@@ -2,11 +2,11 @@ macro(SetupBoost)
 # -------------------------------- Boost --------------------------------
 
     set(_boost_TEST_VERSIONS ${Boost_ADDITIONAL_VERSIONS})
-
-    set (BOOST_COMPONENTS program_options regex thread date_time)
-    find_package(Boost ${BOOST_MIN_VERSION}
-        COMPONENTS ${BOOST_COMPONENTS} REQUIRED)
-
+    
+	set (BOOST_COMPONENTS program_options regex thread date_time)
+	set(Boost_NO_BOOST_CMAKE ON)
+	
+	find_package(Boost REQUIRED COMPONENTS program_options regex thread date_time)
     if(UNIX AND NOT APPLE)
         # Boost.Thread 1.67+ headers reference pthread_condattr_*
         list(APPEND Boost_LIBRARIES pthread)

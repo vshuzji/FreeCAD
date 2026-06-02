@@ -42,7 +42,9 @@ macro(InitializeFreeCADBuildOptions)
             set(FREECAD_LIBPACK_DIR ${CMAKE_SOURCE_DIR} CACHE PATH  "Directory of the FreeCAD LibPack")
         endif()
 
-        set(LIBPACK_FOUND OFF)
+        set(LIBPACK_FOUND ON)
+		set(FREECAD_LIBPACK_USE OFF)
+
         if (FREECAD_LIBPACK_USE)
             if (NOT FREECAD_LIBPACK_DIR)
                 message(WARNING "FREECAD_LIBPACK_USE is ON, but FREECAD_LIBPACK_DIR is not set. Turning FREECAD_LIBPACK_USE OFF.")
