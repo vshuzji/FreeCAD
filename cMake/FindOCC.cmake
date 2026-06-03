@@ -8,6 +8,11 @@
 # OCC_OCAF_LIBRARIES - Link this to use OCC OCAF framework
 
 # we first try to find opencascade directly:
+
+set(OpenCASCADE_DIR "G:/OCCT/install/share/cmake/" CACHE PATH "" FORCE)
+set(OCC_INCLUDE_DIR "G:/OCCT/install/include" CACHE PATH "" FORCE)
+set(OCC_LIBRARY_DIR "G:/OCCT/install/lib" CACHE PATH "" FORCE)
+
 if (NOT OCCT_CMAKE_FALLBACK)
     find_package(OpenCASCADE CONFIG QUIET)
     get_property(flags DIRECTORY PROPERTY COMPILE_DEFINITIONS)

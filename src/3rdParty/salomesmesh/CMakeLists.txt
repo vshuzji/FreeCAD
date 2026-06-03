@@ -59,6 +59,10 @@ if (VTK_OPTIONS)
     add_definitions(${VTK_OPTIONS})
 endif()
 
+include_directories("G:/vcpkg/installed/x64-windows/include")
+include_directories("G:/vcpkg/installed/x64-windows/include/vtk-9.3")
+
+
 include_directories(
     src/SMDS
     src/Driver

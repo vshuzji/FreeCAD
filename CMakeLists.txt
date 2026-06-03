@@ -38,6 +38,8 @@ endif()
 
 option(FREECAD_USE_CCACHE "Auto detect and use ccache during compilation" ON)
 
+set(VCPKG_OVERLAY_PORTS "")
+set(VCPKG_MANIFEST_MODE OFF)
 
 set(VTK_MODULE_ENABLE_VTK_hdf5 OFF)
 set(VTK_MODULE_ENABLE_VTK_GUISupport OFF)
