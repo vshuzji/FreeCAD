@@ -113,6 +113,7 @@ SetupYamlCpp()
 SetupZipIos()
 SetupClipper2()
 find_package(ICU REQUIRED COMPONENTS uc i18n)
+find_package(GLEW CONFIG REQUIRED)
 if(NOT FREECAD_LIBPACK_USE OR FREECAD_LIBPACK_CHECKFILE_CLBUNDLER OR FREECAD_LIBPACK_CHECKFILE_VERSION)
     SetupPython()
     SetupPCL()
@@ -130,8 +131,12 @@ if(NOT FREECAD_LIBPACK_USE OR FREECAD_LIBPACK_CHECKFILE_CLBUNDLER OR FREECAD_LIB
     if(BUILD_SMESH AND NOT WIN32)
 		SetupSalomeSMESH()
 	elseif(BUILD_SMESH AND WIN32)
-		message(STATUS "Using internal SMESH (patched)")
-		set(BUILD_SMESH ON)
+            find_package(VTK REQUIRED COMPONENTS
+                       CommonCore
+                       CommonDataModel
+                       FiltersCore
+                       FiltersGeneral
+                   )
 	endif()
     if (BUILD_FEM_NETGEN)
         set(NETGEN_DEFINITIONS -DNO_PARALLEL_THREADS -DOCCGEOMETRY)
@@ -149,8 +154,7 @@ if(NOT FREECAD_LIBPACK_USE OR FREECAD_LIBPACK_CHECKFILE_CLBUNDLER OR FREECAD_LIB
     SetupFreetype()
 
     if(BUILD_GUI)
-		add_subdirectory(src/3rdParty/Coin3D)
-		add_subdirectory(src/3rdParty/pivy)
+        add_subdirectory(src/3rdParty/pivy)
         SetupSpaceball()
         SetupShibokenAndPyside()
         SetupMatplotlib()
