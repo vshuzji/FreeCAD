@@ -26,9 +26,9 @@
 
 #include "SMESH_SMDS.hxx"
 
-#include <vtkUnstructuredGrid.h>
-#include <vtkCellLinks.h>
-#include <vtkVersion.h>
+#include <vtk-9.3/vtkUnstructuredGrid.h>
+#include <vtk-9.3/vtkCellLinks.h>
+#include <vtk-9.3/vtkVersion.h>
 
 #include <vector>
 #include <set>

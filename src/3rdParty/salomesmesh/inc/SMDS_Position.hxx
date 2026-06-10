@@ -30,7 +30,7 @@
 #include "SMESH_SMDS.hxx"
 
 #include "SMDS_TypeOfPosition.hxx"
-#include <boost/shared_ptr.hpp>
+#include <boost/smart_ptr/atomic_shared_ptr.hpp>
 
 class SMDS_Position;
 //typedef boost::shared_ptr<SMDS_Position> SMDS_PositionPtr;

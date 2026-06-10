@@ -51,7 +51,7 @@
 #include <set>
 #include <list>
 #include <vector>
-#include <vtkSystemIncludes.h>
+#include <vtk-9.3/vtkSystemIncludes.h>
 #include <cassert>
 
 #include "Utils_SALOME_Exception.hxx"

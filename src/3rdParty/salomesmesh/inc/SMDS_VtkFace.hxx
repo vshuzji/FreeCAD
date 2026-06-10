@@ -23,7 +23,7 @@
 #include "SMESH_SMDS.hxx"
 
 #include "SMDS_MeshFace.hxx"
-#include <vtkUnstructuredGrid.h>
+#include <vtk-9.3/vtkUnstructuredGrid.h>
 #include <vector>
 
 class SMDS_EXPORT SMDS_VtkFace: public SMDS_MeshFace

@@ -38,9 +38,9 @@
 #include <vector>
 #include <iostream>
 
-#include <vtkType.h>
-#include <vtkCellType.h>
-#include <vtkCellArray.h>
+#include <vtk-9.3/vtkType.h>
+#include <vtk-9.3/vtkCellType.h>
+#include <vtk-9.3/vtkCellArray.h>
 
 //typedef unsigned short UShortType;
 typedef short ShortType;
