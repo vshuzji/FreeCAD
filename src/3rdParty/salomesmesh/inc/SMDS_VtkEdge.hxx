@@ -27,7 +27,7 @@
 #include "SMESH_SMDS.hxx"
 
 #include "SMDS_MeshEdge.hxx"
-#include <vtk-9.3/vtkUnstructuredGrid.h>
+#include <vtkUnstructuredGrid.h>
 #include <vector>
 
 class SMDS_EXPORT SMDS_VtkEdge: public SMDS_MeshEdge

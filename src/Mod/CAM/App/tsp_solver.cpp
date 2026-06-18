@@ -37,7 +37,7 @@ namespace
  *
  * @param a First point
  * @param b Second point
- * @return Actual distance: sqrt(dxÂ² + dyÂ²)
+ * @return Actual distance: sqrt(dx2 + dy2)
  */
 double dist(const TSPPoint& a, const TSPPoint& b)
 {
@@ -55,7 +55,7 @@ double dist(const TSPPoint& a, const TSPPoint& b)
  *
  * @param a First point
  * @param b Second point
- * @return Squared distance: dxÂ² + dyÂ²
+ * @return Squared distance: dx2 + dy2
  */
 double distSquared(const TSPPoint& a, const TSPPoint& b)
 {
@@ -113,10 +113,10 @@ std::vector<int> solve_impl(
     // STEP 2: Build initial route using Nearest Neighbor algorithm
     // ========================================================================
     // Greedy approach: always visit the closest unvisited point next.
-    // This gives a decent initial solution quickly (O(nÂ²) complexity).
+    // This gives a decent initial solution quickly (O(n2) complexity).
     //
     // Tie-breaking rule:
-    // - If distances are within Â±0.1, prefer point with y-value closer to start
+    // - If distances are within ¡À0.1, prefer point with y-value closer to start
     // - This provides deterministic results when points are nearly equidistant
     std::vector<int> route;
     std::vector<bool> visited(pts.size(), false);
@@ -208,11 +208,11 @@ std::vector<int> solve_impl(
                 double subRouteLengthCurrentPart = dist(pts[route[i]], pts[route[i + 1]]);
 
                 for (size_t j = i + 3; j < limitReorderJ; ++j) {
-                    // Current edges: iâ†’(i+1) and (j-1)â†’j
+                    // Current edges: i¡ú(i+1) and (j-1)¡új
                     double curLen = subRouteLengthCurrentPart
                         + dist(pts[route[j - 1]], pts[route[j]]);
 
-                    // New edges after reversal: (i+1)â†’j and iâ†’(j-1)
+                    // New edges after reversal: (i+1)¡új and i¡ú(j-1)
                     // Add epsilon to prevent cycles from floating point errors
                     double newLen = dist(pts[route[i + 1]], pts[route[j]])
                         + dist(pts[route[i]], pts[route[j - 1]]) + Base::Precision::Confusion();
@@ -259,7 +259,7 @@ std::vector<int> solve_impl(
 
                 // Try moving point i backward (to positions before i)
                 for (size_t j = 0; j + 2 < i; ++j) {
-                    // Current cost: edges around point i and edge jâ†’(j+1)
+                    // Current cost: edges around point i and edge j¡ú(j+1)
                     double curLen = subRouteLengthCurrentPart
                         + dist(pts[route[j]], pts[route[j + 1]]);
 

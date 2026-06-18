@@ -51,6 +51,8 @@
 
 #include <boost/shared_ptr.hpp>
 
+#include "SMESH_SMDS.hxx"
+
 class SMDS_MeshElement;
 class SMDS_MeshFace;
 class SMDS_MeshNode;
@@ -65,7 +67,7 @@ class gp_Pnt;
 namespace SMESH{
   namespace Controls{
 
-    class SMESHCONTROLS_EXPORT TSequenceOfXYZ
+    class SMESH_EXPORT TSequenceOfXYZ
     {
       typedef std::vector<gp_XYZ>::size_type size_type;
 
@@ -113,7 +115,7 @@ namespace SMESH{
      * \brief Class used to detect mesh modification: IsMeshModified() returns
      * true if a mesh has changed since last calling IsMeshModified()
      */
-    class SMESHCONTROLS_EXPORT TMeshModifTracer
+    class SMESH_EXPORT TMeshModifTracer
     {
       VTK_MTIME_TYPE   myMeshModifTime;
       const SMDS_Mesh* myMesh;
@@ -128,7 +130,7 @@ namespace SMESH{
       Class       : NumericalFunctor
       Description : Root of all Functors returning numeric value
     */
-    class SMESHCONTROLS_EXPORT NumericalFunctor: public virtual Functor{
+    class SMESH_EXPORT NumericalFunctor: public virtual Functor{
     public:
       NumericalFunctor();
       virtual void SetMesh( const SMDS_Mesh* theMesh );
@@ -160,7 +162,7 @@ namespace SMESH{
       Class       : Volume
       Description : Functor calculating volume of 3D mesh element
     */
-    class SMESHCONTROLS_EXPORT Volume: public virtual NumericalFunctor{
+    class SMESH_EXPORT Volume: public virtual NumericalFunctor{
     public:
       virtual double GetValue( long theElementId );
       //virtual double GetValue( const TSequenceOfXYZ& thePoints );
@@ -173,7 +175,7 @@ namespace SMESH{
       Class       : MaxElementLength2D
       Description : Functor calculating maximum length of 2D element
     */
-    class SMESHCONTROLS_EXPORT MaxElementLength2D: public virtual NumericalFunctor{
+    class SMESH_EXPORT MaxElementLength2D: public virtual NumericalFunctor{
     public:
       virtual double GetValue( long theElementId );
       virtual double GetValue( const TSequenceOfXYZ& P );
@@ -186,7 +188,7 @@ namespace SMESH{
       Class       : MaxElementLength3D
       Description : Functor calculating maximum length of 3D element
     */
-    class SMESHCONTROLS_EXPORT MaxElementLength3D: public virtual NumericalFunctor{
+    class SMESH_EXPORT MaxElementLength3D: public virtual NumericalFunctor{
     public:
       virtual double GetValue( long theElementId );
       virtual double GetBadRate( double Value, int nbNodes ) const;
@@ -198,7 +200,7 @@ namespace SMESH{
       Class       : SMESH_MinimumAngle
       Description : Functor for calculation of minimum angle
     */
-    class SMESHCONTROLS_EXPORT MinimumAngle: public virtual NumericalFunctor{
+    class SMESH_EXPORT MinimumAngle: public virtual NumericalFunctor{
     public:
       virtual double GetValue( const TSequenceOfXYZ& thePoints );
       virtual double GetBadRate( double Value, int nbNodes ) const;
@@ -210,7 +212,7 @@ namespace SMESH{
       Class       : AspectRatio
       Description : Functor for calculating aspect ratio
     */
-    class SMESHCONTROLS_EXPORT AspectRatio: public virtual NumericalFunctor{
+    class SMESH_EXPORT AspectRatio: public virtual NumericalFunctor{
     public:
       virtual double GetValue( long theElementId );
       virtual double GetValue( const TSequenceOfXYZ& thePoints );
@@ -223,7 +225,7 @@ namespace SMESH{
       Class       : AspectRatio3D
       Description : Functor for calculating aspect ratio of 3D elems.
     */
-    class SMESHCONTROLS_EXPORT AspectRatio3D: public virtual NumericalFunctor{
+    class SMESH_EXPORT AspectRatio3D: public virtual NumericalFunctor{
     public:
       virtual double GetValue( long theElementId );
       virtual double GetValue( const TSequenceOfXYZ& thePoints );
@@ -236,7 +238,7 @@ namespace SMESH{
       Class       : Warping
       Description : Functor for calculating warping
     */
-    class SMESHCONTROLS_EXPORT Warping: public virtual NumericalFunctor{
+    class SMESH_EXPORT Warping: public virtual NumericalFunctor{
     public:
       virtual double GetValue( const TSequenceOfXYZ& thePoints );
       virtual double GetBadRate( double Value, int nbNodes ) const;
@@ -251,7 +253,7 @@ namespace SMESH{
       Class       : Taper
       Description : Functor for calculating taper
     */
-    class SMESHCONTROLS_EXPORT Taper: public virtual NumericalFunctor{
+    class SMESH_EXPORT Taper: public virtual NumericalFunctor{
     public:
       virtual double GetValue( const TSequenceOfXYZ& thePoints );
       virtual double GetBadRate( double Value, int nbNodes ) const;
@@ -262,7 +264,7 @@ namespace SMESH{
       Class       : Skew
       Description : Functor for calculating skew in degrees
     */
-    class SMESHCONTROLS_EXPORT Skew: public virtual NumericalFunctor{
+    class SMESH_EXPORT Skew: public virtual NumericalFunctor{
     public:
       virtual double GetValue( const TSequenceOfXYZ& thePoints );
       virtual double GetBadRate( double Value, int nbNodes ) const;
@@ -274,7 +276,7 @@ namespace SMESH{
       Class       : Area
       Description : Functor for calculating area
     */
-    class SMESHCONTROLS_EXPORT Area: public virtual NumericalFunctor{
+    class SMESH_EXPORT Area: public virtual NumericalFunctor{
     public:
       virtual double GetValue( const TSequenceOfXYZ& thePoints );
       virtual double GetBadRate( double Value, int nbNodes ) const;
@@ -286,7 +288,7 @@ namespace SMESH{
       Class       : Length
       Description : Functor for calculating length of edge
     */
-    class SMESHCONTROLS_EXPORT Length: public virtual NumericalFunctor{
+    class SMESH_EXPORT Length: public virtual NumericalFunctor{
     public:
       virtual double GetValue( const TSequenceOfXYZ& thePoints );
       virtual double GetBadRate( double Value, int nbNodes ) const;
@@ -297,7 +299,7 @@ namespace SMESH{
       Class       : Length2D
       Description : Functor for calculating length of edge
     */
-    class SMESHCONTROLS_EXPORT Length2D: public virtual NumericalFunctor{
+    class SMESH_EXPORT Length2D: public virtual NumericalFunctor{
     public:
       virtual double GetValue( long theElementId );
       virtual double GetBadRate( double Value, int nbNodes ) const;
@@ -317,7 +319,7 @@ namespace SMESH{
       Class       : MultiConnection
       Description : Functor for calculating number of faces connected to the edge
     */
-    class SMESHCONTROLS_EXPORT MultiConnection: public virtual NumericalFunctor{
+    class SMESH_EXPORT MultiConnection: public virtual NumericalFunctor{
     public:
       virtual double GetValue( long theElementId );
       virtual double GetValue( const TSequenceOfXYZ& thePoints );
@@ -329,7 +331,7 @@ namespace SMESH{
       Class       : MultiConnection2D
       Description : Functor for calculating number of faces connected to the edge
     */
-    class SMESHCONTROLS_EXPORT MultiConnection2D: public virtual NumericalFunctor{
+    class SMESH_EXPORT MultiConnection2D: public virtual NumericalFunctor{
     public:
       virtual double GetValue( long theElementId );
       virtual double GetValue( const TSequenceOfXYZ& thePoints );
@@ -350,7 +352,7 @@ namespace SMESH{
       Class       : BallDiameter
       Description : Functor returning diameter of a ball element
     */
-    class SMESHCONTROLS_EXPORT BallDiameter: public virtual NumericalFunctor{
+    class SMESH_EXPORT BallDiameter: public virtual NumericalFunctor{
     public:
       virtual double GetValue( long theElementId );
       virtual double GetBadRate( double Value, int nbNodes ) const;
@@ -366,7 +368,7 @@ namespace SMESH{
       Description : Predicate of Coincident Nodes
       Note        : This class is suitable only for visualization of Coincident Nodes
     */
-    class SMESHCONTROLS_EXPORT CoincidentNodes: public Predicate {
+    class SMESH_EXPORT CoincidentNodes: public Predicate {
     public:
       CoincidentNodes();
       virtual void SetMesh( const SMDS_Mesh* theMesh );
@@ -388,7 +390,7 @@ namespace SMESH{
       Description : Predicate of Coincident Elements
       Note        : This class is suitable only for visualization of Coincident Elements
     */
-    class SMESHCONTROLS_EXPORT CoincidentElements: public Predicate {
+    class SMESH_EXPORT CoincidentElements: public Predicate {
     public:
       CoincidentElements();
       virtual void SetMesh( const SMDS_Mesh* theMesh );
@@ -397,15 +399,15 @@ namespace SMESH{
     private:
       const SMDS_Mesh* myMesh;
     };
-    class SMESHCONTROLS_EXPORT CoincidentElements1D: public CoincidentElements {
+    class SMESH_EXPORT CoincidentElements1D: public CoincidentElements {
     public:
       virtual SMDSAbs_ElementType GetType() const;
     };
-    class SMESHCONTROLS_EXPORT CoincidentElements2D: public CoincidentElements {
+    class SMESH_EXPORT CoincidentElements2D: public CoincidentElements {
     public:
       virtual SMDSAbs_ElementType GetType() const;
     };
-    class SMESHCONTROLS_EXPORT CoincidentElements3D: public CoincidentElements {
+    class SMESH_EXPORT CoincidentElements3D: public CoincidentElements {
     public:
       virtual SMDSAbs_ElementType GetType() const;
     };
@@ -414,7 +416,7 @@ namespace SMESH{
       Class       : FreeBorders
       Description : Predicate for free borders
     */
-    class SMESHCONTROLS_EXPORT FreeBorders: public virtual Predicate{
+    class SMESH_EXPORT FreeBorders: public virtual Predicate{
     public:
       FreeBorders();
       virtual void SetMesh( const SMDS_Mesh* theMesh );
@@ -430,7 +432,7 @@ namespace SMESH{
       Class       : BadOrientedVolume
       Description : Predicate bad oriented volumes
     */
-    class SMESHCONTROLS_EXPORT BadOrientedVolume: public virtual Predicate{
+    class SMESH_EXPORT BadOrientedVolume: public virtual Predicate{
     public:
       BadOrientedVolume();
       virtual void SetMesh( const SMDS_Mesh* theMesh );
@@ -445,7 +447,7 @@ namespace SMESH{
       Class       : ElemEntityType
       Description : Functor for calculating entity type
     */
-    class SMESHCONTROLS_EXPORT ElemEntityType: public virtual Predicate{
+    class SMESH_EXPORT ElemEntityType: public virtual Predicate{
       public:
       ElemEntityType();
       virtual void         SetMesh( const SMDS_Mesh* theMesh );
@@ -466,7 +468,7 @@ namespace SMESH{
     /*
       BareBorderVolume
     */
-    class SMESHCONTROLS_EXPORT BareBorderVolume: public Predicate
+    class SMESH_EXPORT BareBorderVolume: public Predicate
     {
     public:
       BareBorderVolume():myMesh(0) {}
@@ -481,7 +483,7 @@ namespace SMESH{
     /*
       BareBorderFace
     */
-    class SMESHCONTROLS_EXPORT BareBorderFace: public Predicate
+    class SMESH_EXPORT BareBorderFace: public Predicate
     {
     public:
       BareBorderFace():myMesh(0) {}
@@ -497,7 +499,7 @@ namespace SMESH{
     /*
       OverConstrainedVolume
     */
-    class SMESHCONTROLS_EXPORT OverConstrainedVolume: public Predicate
+    class SMESH_EXPORT OverConstrainedVolume: public Predicate
     {
     public:
       OverConstrainedVolume():myMesh(0) {}
@@ -512,7 +514,7 @@ namespace SMESH{
     /*
       OverConstrainedFace
     */
-    class SMESHCONTROLS_EXPORT OverConstrainedFace: public Predicate
+    class SMESH_EXPORT OverConstrainedFace: public Predicate
     {
     public:
       OverConstrainedFace():myMesh(0) {}
@@ -528,7 +530,7 @@ namespace SMESH{
       Class       : FreeEdges
       Description : Predicate for free Edges
     */
-    class SMESHCONTROLS_EXPORT FreeEdges: public virtual Predicate{
+    class SMESH_EXPORT FreeEdges: public virtual Predicate{
     public:
       FreeEdges();
       virtual void SetMesh( const SMDS_Mesh* theMesh );
@@ -555,7 +557,7 @@ namespace SMESH{
       Class       : FreeNodes
       Description : Predicate for free nodes
     */
-    class SMESHCONTROLS_EXPORT FreeNodes: public virtual Predicate{
+    class SMESH_EXPORT FreeNodes: public virtual Predicate{
     public:
       FreeNodes();
       virtual void SetMesh( const SMDS_Mesh* theMesh );
@@ -575,7 +577,7 @@ namespace SMESH{
                     2. With SetRangeStr method. Parameter of this method is a string
                        like as "1,2,3,50-60,63,67,70-"
     */
-    class SMESHCONTROLS_EXPORT RangeOfIds: public virtual Predicate
+    class SMESH_EXPORT RangeOfIds: public virtual Predicate
     {
     public:
                                     RangeOfIds();
@@ -605,7 +607,7 @@ namespace SMESH{
       Class       : Comparator
       Description : Base class for comparators
     */
-    class SMESHCONTROLS_EXPORT Comparator: public virtual Predicate{
+    class SMESH_EXPORT Comparator: public virtual Predicate{
     public:
       Comparator();
       virtual ~Comparator();
@@ -627,7 +629,7 @@ namespace SMESH{
       Class       : LessThan
       Description : Comparator "<"
     */
-    class SMESHCONTROLS_EXPORT LessThan: public virtual Comparator{
+    class SMESH_EXPORT LessThan: public virtual Comparator{
     public:
       virtual bool IsSatisfy( long theElementId );
     };
@@ -637,7 +639,7 @@ namespace SMESH{
       Class       : MoreThan
       Description : Comparator ">"
     */
-    class SMESHCONTROLS_EXPORT MoreThan: public virtual Comparator{
+    class SMESH_EXPORT MoreThan: public virtual Comparator{
     public:
       virtual bool IsSatisfy( long theElementId );
     };
@@ -647,7 +649,7 @@ namespace SMESH{
       Class       : EqualTo
       Description : Comparator "="
     */
-    class SMESHCONTROLS_EXPORT EqualTo: public virtual Comparator{
+    class SMESH_EXPORT EqualTo: public virtual Comparator{
     public:
       EqualTo();
       virtual bool IsSatisfy( long theElementId );
@@ -664,7 +666,7 @@ namespace SMESH{
       Class       : LogicalNOT
       Description : Logical NOT predicate
     */
-    class SMESHCONTROLS_EXPORT LogicalNOT: public virtual Predicate{
+    class SMESH_EXPORT LogicalNOT: public virtual Predicate{
     public:
       LogicalNOT();
       virtual ~LogicalNOT();
@@ -683,7 +685,7 @@ namespace SMESH{
       Class       : LogicalBinary
       Description : Base class for binary logical predicate
     */
-    class SMESHCONTROLS_EXPORT LogicalBinary: public virtual Predicate{
+    class SMESH_EXPORT LogicalBinary: public virtual Predicate{
     public:
       LogicalBinary();
       virtual ~LogicalBinary();
@@ -703,7 +705,7 @@ namespace SMESH{
       Class       : LogicalAND
       Description : Logical AND
     */
-    class SMESHCONTROLS_EXPORT LogicalAND: public virtual LogicalBinary{
+    class SMESH_EXPORT LogicalAND: public virtual LogicalBinary{
     public:
       virtual bool IsSatisfy( long theElementId );
     };
@@ -713,7 +715,7 @@ namespace SMESH{
       Class       : LogicalOR
       Description : Logical OR
     */
-    class SMESHCONTROLS_EXPORT LogicalOR: public virtual LogicalBinary{
+    class SMESH_EXPORT LogicalOR: public virtual LogicalBinary{
     public:
       virtual bool IsSatisfy( long theElementId );
     };
@@ -723,7 +725,7 @@ namespace SMESH{
       Class       : ManifoldPart
       Description : Predicate for manifold part of mesh
     */
-    class SMESHCONTROLS_EXPORT ManifoldPart: public virtual Predicate{
+    class SMESH_EXPORT ManifoldPart: public virtual Predicate{
     public:
 
       /* internal class for algorithm uses */
@@ -796,7 +798,7 @@ namespace SMESH{
       Class       : BelongToMeshGroup
       Description : Verify whether a mesh element is included into a mesh group
     */
-    class SMESHCONTROLS_EXPORT BelongToMeshGroup : public virtual Predicate
+    class SMESH_EXPORT BelongToMeshGroup : public virtual Predicate
     {
     public:
       BelongToMeshGroup();
@@ -819,7 +821,7 @@ namespace SMESH{
       Description : Predicate elements that lying on indicated surface
                     (plane or cylinder)
     */
-    class SMESHCONTROLS_EXPORT ElementsOnSurface : public virtual Predicate {
+    class SMESH_EXPORT ElementsOnSurface : public virtual Predicate {
     public:
       ElementsOnSurface();
       ~ElementsOnSurface();
@@ -857,7 +859,7 @@ namespace SMESH{
       Description : Predicate elements that lying on indicated shape
                     (1D, 2D or 3D)
     */
-    class SMESHCONTROLS_EXPORT ElementsOnShape : public virtual Predicate
+    class SMESH_EXPORT ElementsOnShape : public virtual Predicate
     {
     public:
       ElementsOnShape();
@@ -922,7 +924,7 @@ namespace SMESH{
       Description : Predicate for verifying whether entiy belong to
       specified geometrical support
     */
-    class SMESHCONTROLS_EXPORT BelongToGeom: public virtual Predicate
+    class SMESH_EXPORT BelongToGeom: public virtual Predicate
     {
     public:
       BelongToGeom();
@@ -958,7 +960,7 @@ namespace SMESH{
       Description : Predicate for verifying whether entiy lying or partially lying on
       specified geometrical support
     */
-    class SMESHCONTROLS_EXPORT LyingOnGeom: public virtual Predicate
+    class SMESH_EXPORT LyingOnGeom: public virtual Predicate
     {
     public:
       LyingOnGeom();
@@ -999,7 +1001,7 @@ namespace SMESH{
       Class       : FreeFaces
       Description : Predicate for free faces
     */
-    class SMESHCONTROLS_EXPORT FreeFaces: public virtual Predicate{
+    class SMESH_EXPORT FreeFaces: public virtual Predicate{
     public:
       FreeFaces();
       virtual void SetMesh( const SMDS_Mesh* theMesh );
@@ -1014,7 +1016,7 @@ namespace SMESH{
       Class       : LinearOrQuadratic
       Description : Predicate for free faces
     */
-    class SMESHCONTROLS_EXPORT LinearOrQuadratic: public virtual Predicate{
+    class SMESH_EXPORT LinearOrQuadratic: public virtual Predicate{
     public:
       LinearOrQuadratic();
       virtual void        SetMesh( const SMDS_Mesh* theMesh );
@@ -1032,7 +1034,7 @@ namespace SMESH{
       Class       : GroupColor
       Description : Functor for check color of group to which mesh element belongs to
     */
-    class SMESHCONTROLS_EXPORT GroupColor: public virtual Predicate{
+    class SMESH_EXPORT GroupColor: public virtual Predicate{
     public:
       GroupColor();
       virtual void        SetMesh( const SMDS_Mesh* theMesh );
@@ -1055,7 +1057,7 @@ namespace SMESH{
       Class       : ElemGeomType
       Description : Predicate to check element geometry type
     */
-    class SMESHCONTROLS_EXPORT ElemGeomType: public virtual Predicate{
+    class SMESH_EXPORT ElemGeomType: public virtual Predicate{
     public:
       ElemGeomType();
       virtual void         SetMesh( const SMDS_Mesh* theMesh );
@@ -1076,7 +1078,7 @@ namespace SMESH{
       Class       : CoplanarFaces
       Description : Predicate to check angle between faces
     */
-    class SMESHCONTROLS_EXPORT CoplanarFaces: public virtual Predicate
+    class SMESH_EXPORT CoplanarFaces: public virtual Predicate
     {
     public:
       CoplanarFaces();
@@ -1101,7 +1103,7 @@ namespace SMESH{
       Class       : ConnectedElements
       Description : Predicate to get elements of one domain
     */
-    class SMESHCONTROLS_EXPORT ConnectedElements: public virtual Predicate
+    class SMESH_EXPORT ConnectedElements: public virtual Predicate
     {
     public:
       ConnectedElements();
@@ -1133,7 +1135,7 @@ namespace SMESH{
     /*
       FILTER
     */
-    class SMESHCONTROLS_EXPORT Filter {
+    class SMESH_EXPORT Filter {
     public:
       Filter();
       virtual ~Filter();

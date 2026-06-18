@@ -23,17 +23,16 @@
 #define MED_Utilities_HeaderFile
 
 #include "MED_WrapperBase.hxx"
+#include "SMESH_SMESH.hxx"
 
-#include <iostream>     
-#include <sstream>      
 #include <string>
-#include <string.h>
-#include <stdexcept>
+#include <sstream>
+
 
 
 namespace MED
 {
-  class MEDWRAPPER_EXPORT PrefixPrinter
+  class SMESH_EXPORT PrefixPrinter
   {
     static int myCounter;
     bool myIsActive;

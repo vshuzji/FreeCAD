@@ -30,7 +30,6 @@
 #endif
 
 #include "SMESH_MeshEditor.hxx"
-
 #include "SMDS_FaceOfNodes.hxx"
 #include "SMDS_VolumeTool.hxx"
 #include "SMDS_EdgePosition.hxx"

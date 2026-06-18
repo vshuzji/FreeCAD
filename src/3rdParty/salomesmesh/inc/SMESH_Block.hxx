@@ -28,6 +28,7 @@
 #define SMESH_Block_HeaderFile
 
 #include "SMESH_Utils.hxx"
+#include "SMESH_SMESH.hxx"
 
 // #include <Geom2d_Curve.hxx>
 // #include <Geom_Curve.hxx>
@@ -59,7 +60,7 @@ class gp_Pnt;
 // parameters inside the block and vice versa
 // =========================================================
 
-class SMESHUtils_EXPORT SMESH_Block: public math_FunctionSetWithDerivatives
+class SMESH_EXPORT SMESH_Block: public math_FunctionSetWithDerivatives
 {
  public:
   enum TShapeID {
@@ -316,7 +317,7 @@ public:
   // Note 2: curve adaptors need to have only Value(double), FirstParameter() and
   // LastParameter() defined to be used by Block algorithms
 
-  class SMESHUtils_EXPORT TEdge {
+  class SMESH_EXPORT TEdge {
     int                myCoordInd;
     double             myFirst;
     double             myLast;
@@ -336,7 +337,7 @@ public:
     ~TEdge();
   };
 
-  class SMESHUtils_EXPORT TFace {
+  class SMESH_EXPORT TFace {
     // 4 edges in the order u0, u1, 0v, 1v
     int                  myCoordInd[ 4 ];
     double               myFirst   [ 4 ];

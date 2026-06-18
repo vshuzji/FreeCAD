@@ -25,7 +25,6 @@
 // Author:    Sergey KUUL
 //
 #include "SMESH_MesherHelper.hxx"
-
 #include "SMDS_EdgePosition.hxx"
 #include "SMDS_FaceOfNodes.hxx"
 #include "SMDS_FacePosition.hxx" 

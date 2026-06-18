@@ -1,12 +1,9 @@
 macro(SetupBoost)
-# -------------------------------- Boost --------------------------------
+    # -------------------------------- Boost --------------------------------
 
     set(_boost_TEST_VERSIONS ${Boost_ADDITIONAL_VERSIONS})
-    
-	set (BOOST_COMPONENTS program_options regex thread date_time)
-	set(Boost_NO_BOOST_CMAKE ON)
-	
-	find_package(Boost REQUIRED COMPONENTS program_options regex thread date_time)
+    set (BOOST_COMPONENTS program_options regex thread date_time)
+    find_package(Boost REQUIRED COMPONENTS program_options regex thread date_time)
     if(UNIX AND NOT APPLE)
         # Boost.Thread 1.67+ headers reference pthread_condattr_*
         list(APPEND Boost_LIBRARIES pthread)
@@ -21,11 +18,11 @@ macro(SetupBoost)
             endif()
         endforeach()
         message(FATAL_ERROR "=============================================\n"
-                            "Required components:\n"
-                            " ${BOOST_COMPONENTS}\n"
-                            "Not found, install the components:\n"
-                            " ${NO_BOOST_COMPONENTS}\n"
-                            "=============================================\n")
+            "Required components:\n"
+            " ${BOOST_COMPONENTS}\n"
+            "Not found, install the components:\n"
+            " ${NO_BOOST_COMPONENTS}\n"
+            "=============================================\n")
     endif(NOT Boost_FOUND)
 
 endmacro(SetupBoost)

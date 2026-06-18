@@ -33,7 +33,7 @@ namespace UNV2412{
   typedef std::vector<int> TNodeLabels; // Nodal connectivities
   typedef int TElementLab; // type of element label
 
-  struct MESHDRIVERUNV_EXPORT TRecord
+  struct DRIVERUNV_EXPORT TRecord
   {
     TRecord();
 
@@ -52,17 +52,17 @@ namespace UNV2412{
   
   typedef std::vector<TRecord> TDataSet;
 
-  MESHDRIVERUNV_EXPORT void
+  DRIVERUNV_EXPORT void
     Read(std::ifstream& in_stream, TDataSet& theDataSet);
 
-  MESHDRIVERUNV_EXPORT void
+  DRIVERUNV_EXPORT void
     Write(std::ofstream& out_stream, const TDataSet& theDataSet);
 
-  MESHDRIVERUNV_EXPORT bool
+  DRIVERUNV_EXPORT bool
     IsBeam(int theFeDescriptorId);
-  MESHDRIVERUNV_EXPORT bool
+  DRIVERUNV_EXPORT bool
     IsFace(int theFeDescriptorId);
-  MESHDRIVERUNV_EXPORT bool
+  DRIVERUNV_EXPORT bool
     IsVolume(int theFeDescriptorId);
 
 };

@@ -27,8 +27,8 @@
 #ifndef _SMESH_Quadtree_HXX_
 #define _SMESH_Quadtree_HXX_
 
-#include "SMESH_Utils.hxx"
 #include "SMESH_tree.hxx"
+#include "SMESH_StdMeshers.hxx"
 #include <Standard_Version.hxx>
 #if OCC_VERSION_HEX >= 0x080000
 #include <Bnd_B2.hxx>
@@ -43,7 +43,7 @@
  * - descendant*    newChild() const; // a new child instance
  * - void           buildChildrenData(); // Fill in data of the children
  */
-class SMESHUtils_EXPORT SMESH_Quadtree : public SMESH_Tree< Bnd_B2d, 4 >
+class STDMESHERS_EXPORT SMESH_Quadtree : public SMESH_Tree< Bnd_B2d, 4 >
 {
 public:
   typedef SMESH_Tree< Bnd_B2d, 4> TBaseTree;

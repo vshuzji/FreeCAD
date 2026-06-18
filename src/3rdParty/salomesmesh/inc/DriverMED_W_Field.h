@@ -27,6 +27,7 @@
 #define _INCLUDE_DriverMED_W_Field
 
 #include "SMESH_DriverMED.hxx"
+#include "SMESH_SMDS.hxx"
 
 #include "Driver_SMESHDS_Mesh.h"
 #include "SMDSAbs_ElementType.hxx"
@@ -35,7 +36,7 @@
 #include <string>
 #include <vector>
 
-class MESHDRIVERMED_EXPORT DriverMED_W_Field: public Driver_SMESHDS_Mesh
+class SMESH_EXPORT DriverMED_W_Field: public Driver_SMESHDS_Mesh
 {
  public:
 

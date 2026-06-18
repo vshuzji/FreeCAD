@@ -38,7 +38,7 @@ namespace UNV{
 
   const size_t theMaxLineLen = 82; // 80 for text + 2 for "\r\n"
 
-  class MESHDRIVERUNV_EXPORT PrefixPrinter{
+  class DRIVERUNV_EXPORT PrefixPrinter{
     static int myCounter;
   public:
     PrefixPrinter();

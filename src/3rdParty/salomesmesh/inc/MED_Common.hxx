@@ -24,6 +24,7 @@
 #define MED_Common_HeaderFile
 
 #include "MED_WrapperBase.hxx"
+#include "SMESH_SMESH.hxx"
 
 #include <string>
 #include <set>
@@ -92,42 +93,42 @@ namespace MED{
   typedef std::set<EGeometrieElement> TGeomSet;
   typedef std::map<EEntiteMaillage,TGeomSet> TEntity2GeomSet;
 
-  MEDWRAPPER_EXPORT 
+  SMESH_EXPORT
   const TEntity2GeomSet& 
   GetEntity2GeomSet();
 
   template<EVersion>
-  TInt MEDWRAPPER_EXPORT
+  TInt SMESH_EXPORT
   GetDESCLength();
   
   template<EVersion>
-  TInt MEDWRAPPER_EXPORT
+  TInt SMESH_EXPORT
   GetIDENTLength();
   
   template<EVersion>
-  TInt MEDWRAPPER_EXPORT
+  TInt SMESH_EXPORT
   GetNOMLength();
   
   template<EVersion>
-  TInt MEDWRAPPER_EXPORT
+  TInt SMESH_EXPORT
   GetLNOMLength();
   
   template<EVersion>
-  TInt MEDWRAPPER_EXPORT
+  TInt SMESH_EXPORT
   GetPNOMLength();
   
   template<EVersion>
-  void MEDWRAPPER_EXPORT
+  void SMESH_EXPORT
   GetVersionRelease(TInt& majeur, TInt& mineur, TInt& release);
   
   template<EVersion>
-  MEDWRAPPER_EXPORT
+  SMESH_EXPORT
   TInt
   GetNbConn(EGeometrieElement typmai,
             EEntiteMaillage typent,
             TInt mdim);
   
-  MEDWRAPPER_EXPORT
+  SMESH_EXPORT
   TInt 
   GetNbNodes(EGeometrieElement typmai);
 

@@ -32,7 +32,7 @@ namespace MED
 
 
   //---------------------------------------------------------------
-  class MEDWRAPPER_EXPORT TCoordHelper
+  class SMESH_EXPORT TCoordHelper
   {
     TGetCoord* myGetCoord;
     
@@ -47,7 +47,7 @@ namespace MED
 
 
   //---------------------------------------------------------------
-  MEDWRAPPER_EXPORT 
+  SMESH_EXPORT
   PCoordHelper
   GetCoordHelper(PNodeInfo theNodeInfo);
 

@@ -28,6 +28,7 @@
 #define __DriverGMF_Read_HXX__
 
 #include "SMESH_DriverGMF.hxx"
+#include "SMESH_SMDS.hxx"
 
 #include "Driver_SMESHDS_Mesh.h"
 
@@ -38,7 +39,7 @@
  * \brief Driver reading a mesh from the GMF file. The mesh to read is selected by 
  *  an index (counted form 0) set via SetMeshId()
  */
-class MESHDriverGMF_EXPORT DriverGMF_Read : public Driver_SMESHDS_Mesh
+class SMESH_EXPORT DriverGMF_Read : public Driver_SMESHDS_Mesh
 {
 public:
 

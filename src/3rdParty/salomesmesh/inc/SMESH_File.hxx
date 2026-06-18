@@ -25,7 +25,7 @@
 #define __SMESH_File_HXX__
 
 #include "SMESH_Utils.hxx"
-
+#include "SMESH_DriverSTL.hxx"
 #include <string>
 #include <vector>
 
@@ -38,7 +38,7 @@
 /*!
  * \brief High level util for effective file reading and other file operations
  */
-class SMESHUtils_EXPORT SMESH_File
+class DRIVERSTL_EXPORT SMESH_File
 {
 public:
 

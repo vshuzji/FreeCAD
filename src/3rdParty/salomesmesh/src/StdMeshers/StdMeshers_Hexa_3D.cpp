@@ -51,7 +51,6 @@
 #include <TopoDS.hxx>
 
 #include "utilities.h"
-#include "Utils_ExceptHandlers.hxx"
 
 typedef SMESH_Comment TComm;
 

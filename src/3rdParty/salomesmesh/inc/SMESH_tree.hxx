@@ -29,7 +29,6 @@
 #ifndef _SMESH_Tree_HXX_
 #define _SMESH_Tree_HXX_
 
-#include "SMESH_Utils.hxx"
 
 //================================================================================
 // Data limiting the tree height

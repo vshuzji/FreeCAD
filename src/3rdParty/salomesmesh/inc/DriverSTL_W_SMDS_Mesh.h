@@ -28,7 +28,6 @@
 #define _INCLUDE_DRIVERSTL_W_SMDS_MESH
 
 #include "SMESH_DriverSTL.hxx"
-
 #include "Driver_SMDS_Mesh.h"
 #include "SMDS_ElemIterator.hxx"
 
@@ -37,7 +36,7 @@
 /*!
  * \brief Writer of a mesh in STL (STereoLithography) file format.
  */
-class MESHDRIVERSTL_EXPORT DriverSTL_W_SMDS_Mesh: public Driver_SMDS_Mesh
+class DRIVERSTL_EXPORT DriverSTL_W_SMDS_Mesh: public Driver_SMDS_Mesh
 {
  public:
   

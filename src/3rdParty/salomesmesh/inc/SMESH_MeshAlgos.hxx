@@ -30,8 +30,7 @@
 #ifndef __SMESH_MeshAlgos_HXX__
 #define __SMESH_MeshAlgos_HXX__
 
-#include "SMESH_Utils.hxx"
-
+#include "SMESH_SMESH.hxx"
 #include "SMDSAbs_ElementType.hxx"
 #include "SMDS_ElemIterator.hxx"
 #include "SMESH_TypeDefs.hxx"
@@ -51,7 +50,7 @@ class SMDS_Mesh;
  */
 //=======================================================================
 
-struct SMESHUtils_EXPORT SMESH_NodeSearcher
+struct SMESH_EXPORT SMESH_NodeSearcher
 {
   virtual ~SMESH_NodeSearcher() {}
   virtual const SMDS_MeshNode* FindClosestTo( const gp_Pnt& pnt ) = 0;
@@ -67,7 +66,7 @@ struct SMESHUtils_EXPORT SMESH_NodeSearcher
  */
 //=======================================================================
 
-struct SMESHUtils_EXPORT SMESH_ElementSearcher
+struct SMESH_EXPORT SMESH_ElementSearcher
 {
   /*!
    * \brief Find elements of given type where the given point is IN or ON.
@@ -101,22 +100,22 @@ namespace SMESH_MeshAlgos
   /*!
    * \brief Return true if the point is IN or ON of the element
    */
-  SMESHUtils_EXPORT
+  SMESH_EXPORT
   bool IsOut( const SMDS_MeshElement* element, const gp_Pnt& point, double tol );
 
-  SMESHUtils_EXPORT
+  SMESH_EXPORT
   double GetDistance( const SMDS_MeshElement* elem, const gp_Pnt& point );
 
-  SMESHUtils_EXPORT
+  SMESH_EXPORT
   double GetDistance( const SMDS_MeshEdge* edge, const gp_Pnt& point );
 
-  SMESHUtils_EXPORT
+  SMESH_EXPORT
   double GetDistance( const SMDS_MeshFace* face, const gp_Pnt& point );
 
-  SMESHUtils_EXPORT
+  SMESH_EXPORT
   double GetDistance( const SMDS_MeshVolume* volume, const gp_Pnt& point );
 
-  SMESHUtils_EXPORT
+  SMESH_EXPORT
   void GetBarycentricCoords( const gp_XY& point,
                              const gp_XY& t0, const gp_XY& t1, const gp_XY& t2,
                              double &    bc0, double &    bc1);
@@ -127,7 +126,7 @@ namespace SMESH_MeshAlgos
    * - in elemSet provided that !elemSet.empty()
    * i1 and i2 optionally returns indices of n1 and n2
    */
-  SMESHUtils_EXPORT
+  SMESH_EXPORT
   const SMDS_MeshElement* FindFaceInSet(const SMDS_MeshNode*    n1,
                                         const SMDS_MeshNode*    n2,
                                         const TIDSortedElemSet& elemSet,
@@ -137,29 +136,29 @@ namespace SMESH_MeshAlgos
   /*!
    * \brief Calculate normal of a mesh face
    */
-  SMESHUtils_EXPORT
+  SMESH_EXPORT
   bool FaceNormal(const SMDS_MeshElement* F, gp_XYZ& normal, bool normalized=true);
 
   /*!
    * \brief Return nodes common to two elements
    */
-  SMESHUtils_EXPORT
+  SMESH_EXPORT
   std::vector< const SMDS_MeshNode*> GetCommonNodes(const SMDS_MeshElement* e1,
                                                     const SMDS_MeshElement* e2);
 
   /*!
    * \brief Return SMESH_NodeSearcher. The caller is responsible for deleting it
    */
-  SMESHUtils_EXPORT
+  SMESH_EXPORT
   SMESH_NodeSearcher* GetNodeSearcher( SMDS_Mesh& mesh );
 
   /*!
    * \brief Return SMESH_ElementSearcher. The caller is responsible for deleting it
    */
-  SMESHUtils_EXPORT
+  SMESH_EXPORT
   SMESH_ElementSearcher* GetElementSearcher( SMDS_Mesh& mesh,
                                              double     tolerance=-1.);
-  SMESHUtils_EXPORT
+  SMESH_EXPORT
   SMESH_ElementSearcher* GetElementSearcher( SMDS_Mesh& mesh,
                                              SMDS_ElemIteratorPtr elemIt,
                                              double     tolerance=-1. );
@@ -190,7 +189,7 @@ namespace SMESH_MeshAlgos
    *
    * (Implemented in ./SMESH_FreeBorders.cxx)
    */
-  SMESHUtils_EXPORT
+  SMESH_EXPORT
   void FindCoincidentFreeBorders(SMDS_Mesh&              mesh,
                                  double                  tolerance,
                                  CoincidentFreeBorders & foundFreeBordes);

@@ -25,19 +25,19 @@
 #ifdef WIN32
  #if defined MEDWRAPPER_V2_2_EXPORTS || defined MEDWrapper_V2_2_EXPORTS
   #if defined WIN32
-   #define MED_V22_WRAPPER_EXPORT __declspec( dllexport )
+   #define SMESH_EXPORT __declspec( dllexport )
   #else
-   #define MED_V22_WRAPPER_EXPORT
+   #define SMESH_EXPORT
   #endif
  #else
   #if defined WIN32
-   #define MED_V22_WRAPPER_EXPORT __declspec( dllimport )
+   #define SMESH_EXPORT __declspec( dllimport )
   #else
-   #define MED_V22_WRAPPER_EXPORT
+   #define SMESH_EXPORT
   #endif
  #endif
 #else
- #define MED_V22_WRAPPER_EXPORT
+ #define SMESH_EXPORT
 #endif
 
 #include "MED_Structures.hxx"
@@ -46,31 +46,31 @@
 namespace MED
 {
   template<>
-  TInt MED_V22_WRAPPER_EXPORT
+  TInt SMESH_EXPORT
   GetDESCLength<eV2_2>();
   
   template<>
-  TInt MED_V22_WRAPPER_EXPORT
+  TInt SMESH_EXPORT
   GetIDENTLength<eV2_2>();
   
   template<>
-  TInt MED_V22_WRAPPER_EXPORT
+  TInt SMESH_EXPORT
   GetNOMLength<eV2_2>();
   
   template<>
-  TInt MED_V22_WRAPPER_EXPORT
+  TInt SMESH_EXPORT
   GetLNOMLength<eV2_2>();
   
   template<>
-  TInt MED_V22_WRAPPER_EXPORT
+  TInt SMESH_EXPORT
   GetPNOMLength<eV2_2>();
 
   template<>
-  void MED_V22_WRAPPER_EXPORT
+  void SMESH_EXPORT
   GetVersionRelease<eV2_2>(TInt& majeur, TInt& mineur, TInt& release);
 
   template<>
-  TInt MED_V22_WRAPPER_EXPORT
+  TInt SMESH_EXPORT
   GetNbConn<eV2_2>(EGeometrieElement typmai,
                    EEntiteMaillage typent,
                    TInt mdim);
@@ -84,7 +84,7 @@ namespace MED
     typedef enum {eLECTURE, eLECTURE_ECRITURE, eLECTURE_AJOUT, eCREATION} EModeAcces; 
 
     //----------------------------------------------------------------------------
-    class MED_V22_WRAPPER_EXPORT TVWrapper: public MED::TTWrapper<eV2_2>
+    class SMESH_EXPORT TVWrapper: public MED::TTWrapper<eV2_2>
     {
       TVWrapper();
       TVWrapper(const TVWrapper&);

@@ -1,4 +1,5 @@
 add_library(FreeCADGui SHARED)
+include_directories(${CMAKE_SOURCE_DIR}/src/3rdParty/PyCXX)
 
 if ( EXISTS "${CMAKE_SOURCE_DIR}/src/3rdParty/GSL/include" )
     include_directories( ${CMAKE_SOURCE_DIR}/src/3rdParty/GSL/include )
@@ -14,6 +15,9 @@ endif()
 add_subdirectory(Stylesheets)
 add_subdirectory(PreferencePacks)
 add_subdirectory(PreferencePackTemplates)
+
+set(Python3_USE_DEBUG_LIBS OFF)
+set(Python3_LIBRARY E:/Python/Python312/libs/python312_d.lib)
 
 if(BUILD_WITH_CONDA)
     add_definitions(-DFC_CONDA)
@@ -77,6 +81,8 @@ target_include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}/TaskView
     ${CMAKE_CURRENT_BINARY_DIR}/Quarter
     ${CMAKE_CURRENT_BINARY_DIR}/DAGView
+    E:/Python/Python312/include/
+    ${CMAKE_SOURCE_DIR}/src/3rdParty/
 )
 
 target_include_directories(
@@ -1499,7 +1505,7 @@ if (EIGEN3_NO_DEPRECATED_COPY)
 endif ()
 
 target_sources(FreeCADGui PRIVATE ${FreeCADGui_SRCS})
-target_link_libraries(FreeCADGui PUBLIC ${FreeCADGui_LIBS})
+target_link_libraries(FreeCADGui PUBLIC ${FreeCADGui_LIBS} ${Python3_LIBRARY})
 
 if (MSVC)
     target_compile_definitions(FreeCADGui PRIVATE WIN32_LEAN_AND_MEAN)

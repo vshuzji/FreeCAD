@@ -26,7 +26,7 @@
 
 #include "Driver_SMESHDS_Mesh.h"
 
-class MESHDRIVERUNV_EXPORT DriverUNV_W_SMESHDS_Mesh: public Driver_SMESHDS_Mesh
+class DRIVERUNV_EXPORT DriverUNV_W_SMESHDS_Mesh: public Driver_SMESHDS_Mesh
 {};
 
 #endif

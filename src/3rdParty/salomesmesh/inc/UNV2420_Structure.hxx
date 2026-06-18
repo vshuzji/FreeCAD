@@ -87,7 +87,7 @@ namespace UNV2420
 
   typedef int TCSLabel; // type of coord system label
 
-  struct MESHDRIVERUNV_EXPORT TRecord
+  struct DRIVERUNV_EXPORT TRecord
   {
     TCSLabel    coord_sys_label; 
     int         coord_sys_type;  // { Cartesian=0, Cylindrical, Spherical }
@@ -103,12 +103,12 @@ namespace UNV2420
   
   typedef std::vector<TRecord> TDataSet;
 
-  MESHDRIVERUNV_EXPORT void
+  DRIVERUNV_EXPORT void
   Read(std::ifstream& in_stream,
        std::string&   part_name, // can re-store a mesh name
        TDataSet&      theDataSet);
 
-  MESHDRIVERUNV_EXPORT void
+  DRIVERUNV_EXPORT void
   Write(std::ofstream&     out_stream,
         const std::string& part_name); // can store a mesh name
   //    const TDataSet&    theDataSet);

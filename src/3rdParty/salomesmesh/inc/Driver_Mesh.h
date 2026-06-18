@@ -33,16 +33,16 @@
 #include <vector>
 
 #ifdef WIN32
- #if defined MESHDRIVER_EXPORTS || defined MeshDriver_EXPORTS
-  #define MESHDRIVER_EXPORT __declspec( dllexport )
+ #if defined Driver_EXPORTS
+  #define DRIVER_EXPORT __declspec( dllexport )
  #else
-  #define MESHDRIVER_EXPORT __declspec( dllimport )
+  #define DRIVER_EXPORT __declspec( dllimport )
  #endif
 #else
- #define MESHDRIVER_EXPORT
+ #define DRIVER_EXPORT
 #endif
 
-class MESHDRIVER_EXPORT Driver_Mesh
+class DRIVER_EXPORT Driver_Mesh
 {
  public:
   Driver_Mesh();

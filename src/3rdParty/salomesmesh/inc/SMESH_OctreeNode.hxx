@@ -37,10 +37,7 @@
 
 #include <gp_Pnt.hxx>
 
-#include <list>
 #include <set>
-#include <map>
-#include <vector>
 
 //forward declaration
 class SMDS_MeshNode;
@@ -50,7 +47,7 @@ typedef SMDS_Iterator<SMESH_OctreeNode*>              SMESH_OctreeNodeIterator;
 typedef boost::shared_ptr<SMESH_OctreeNodeIterator>   SMESH_OctreeNodeIteratorPtr;
 typedef std::set< const SMDS_MeshNode*, TIDCompare >  TIDSortedNodeSet;
 
-class SMESHUtils_EXPORT SMESH_OctreeNode : public SMESH_Octree
+class SMESH_EXPORT SMESH_OctreeNode : public SMESH_Octree
 {
  public:
 

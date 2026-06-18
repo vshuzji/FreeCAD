@@ -28,18 +28,10 @@
 // It was moved here for the sake of SMESHDS_GroupOnFilter
 
 #include "SMDSAbs_ElementType.hxx"
+#include "SMESH_SMESH.hxx"
+
 
 #include <boost/shared_ptr.hpp>
-
-#ifdef WIN32
- #if defined SMESHCONTROLS_EXPORTS || defined SMESHControls_EXPORTS
-  #define SMESHCONTROLS_EXPORT __declspec( dllexport )
- #else
-  #define SMESHCONTROLS_EXPORT __declspec( dllimport )
- #endif
-#else
- #define SMESHCONTROLS_EXPORT
-#endif
 
 class SMDS_Mesh;
 
@@ -50,7 +42,7 @@ namespace SMESH{
       Class       : Functor
       Description : Root of all Functors defined in ../Controls/SMESH_ControlsDef.hxx
     */
-    class SMESHCONTROLS_EXPORT Functor
+    class SMESH_EXPORT Functor
     {
     public:
       virtual ~Functor(){}
@@ -67,7 +59,7 @@ namespace SMESH{
       Class       : Predicate
       Description : Base class for all predicates
     */
-    class SMESHCONTROLS_EXPORT Predicate: public virtual Functor{
+    class SMESH_EXPORT Predicate: public virtual Functor{
     public:
       virtual bool IsSatisfy( long theElementId ) = 0;
       virtual SMDSAbs_ElementType GetType() const = 0;

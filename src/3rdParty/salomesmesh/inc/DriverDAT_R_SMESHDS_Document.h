@@ -26,7 +26,7 @@
 
 #include "Driver_Document.h"
 
-class MESHDRIVERDAT_EXPORT DriverDAT_R_SMESHDS_Document : public Driver_Document 
+class DRIVERDAT_EXPORT DriverDAT_R_SMESHDS_Document : public Driver_Document
 {};
 
 #endif

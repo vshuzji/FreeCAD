@@ -25,7 +25,6 @@
 
 #include "StdMeshers_CompositeHexa_3D.hxx"
 
-#include "SMDS_Mesh.hxx"
 #include "SMDS_MeshNode.hxx"
 #include "SMDS_SetIterator.hxx"
 #include "SMESH_Block.hxx"

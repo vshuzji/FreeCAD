@@ -28,6 +28,7 @@
 #define _INCLUDE_DRIVERMED_W_SMESHDS_MESH
 
 #include "SMESH_DriverMED.hxx"
+#include "SMESH_SMDS.hxx"
 
 #include "Driver_SMESHDS_Mesh.h"
 #include "MED_Common.hxx"
@@ -41,7 +42,7 @@ class SMESHDS_Mesh;
 class SMESHDS_GroupBase;
 class SMESHDS_SubMesh;
 
-class MESHDRIVERMED_EXPORT DriverMED_W_SMESHDS_Mesh: public Driver_SMESHDS_Mesh
+class SMESH_EXPORT DriverMED_W_SMESHDS_Mesh: public Driver_SMESHDS_Mesh
 {
   public:
 

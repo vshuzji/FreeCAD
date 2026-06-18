@@ -21,6 +21,9 @@
 #  *                                                                          *
 #  ***************************************************************************/
 
+
+include_directories( G:/vcpkg/installed/x64-windows/include)
+
 if ( EXISTS "${CMAKE_SOURCE_DIR}/src/3rdParty/GSL/include" )
     include_directories( ${CMAKE_SOURCE_DIR}/src/3rdParty/GSL/include )
 else()

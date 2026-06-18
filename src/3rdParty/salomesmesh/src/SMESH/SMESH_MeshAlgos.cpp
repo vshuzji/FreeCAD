@@ -27,7 +27,6 @@
 // to make them accessible from Controls package
 
 #include "SMESH_MeshAlgos.hxx"
-
 #include "SMDS_FaceOfNodes.hxx"
 #include "SMDS_LinearEdge.hxx"
 #include "SMDS_Mesh.hxx"

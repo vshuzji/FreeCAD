@@ -29,7 +29,7 @@
 
 class SMESH_File;
 
-class MESHDRIVERSTL_EXPORT DriverSTL_R_SMDS_Mesh: public Driver_SMDS_Mesh
+class DRIVERSTL_EXPORT DriverSTL_R_SMDS_Mesh: public Driver_SMDS_Mesh
 {
  public:
   DriverSTL_R_SMDS_Mesh();

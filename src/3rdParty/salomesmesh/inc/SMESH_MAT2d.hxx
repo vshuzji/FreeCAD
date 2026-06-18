@@ -27,7 +27,7 @@
 #define __SMESH_MAT2d_HXX__
 
 #include "SMESH_Utils.hxx"
-
+#include "SMESH_StdMeshers.hxx"
 #include <TopoDS_Face.hxx>
 #include <TopoDS_Edge.hxx>
 #include <gp.hxx> //added for occ6
@@ -65,7 +65,7 @@ namespace SMESH_MAT2d
   /*!
    * \brief End point of MA Branch
    */
-  struct SMESHUtils_EXPORT BranchEnd
+  struct STDMESHERS_EXPORT BranchEnd
   {
     const TVDVertex*             _vertex;
     BranchEndType                _type;
@@ -77,7 +77,7 @@ namespace SMESH_MAT2d
   /*!
    * \brief Point on MA Branch
    */
-  struct SMESHUtils_EXPORT BranchPoint
+  struct STDMESHERS_EXPORT BranchPoint
   {
     const Branch* _branch;
     std::size_t   _iEdge; // MA edge index within the branch
@@ -92,7 +92,7 @@ namespace SMESH_MAT2d
    *        It's main feature is to return two BoundaryPoint's per a point on it.
    *        Points on a Branch are defined by [0,1] parameter 
    */
-  class SMESHUtils_EXPORT Branch
+  class STDMESHERS_EXPORT Branch
   {
   public:
     bool getBoundaryPoints(double param, BoundaryPoint& bp1, BoundaryPoint& bp2 ) const;
@@ -170,7 +170,7 @@ namespace SMESH_MAT2d
    * \brief Face boundary is discretized so that each its segment to correspond to
    *        an edge of MA
    */
-  class SMESHUtils_EXPORT Boundary
+  class STDMESHERS_EXPORT Boundary
   {
   public:
 
@@ -196,7 +196,7 @@ namespace SMESH_MAT2d
   /*!
    * \brief Point on FACE boundary
    */
-  struct SMESHUtils_EXPORT BoundaryPoint
+  struct STDMESHERS_EXPORT BoundaryPoint
   {
     std::size_t _edgeIndex; // index of an EDGE in a sequence passed to MedialAxis()
     double      _param;     // parameter of this EDGE
@@ -207,7 +207,7 @@ namespace SMESH_MAT2d
    *        maximal balls inside 2D representation of a face. This class
    *        implements a piecewise approximation of MA.
    */
-  class SMESHUtils_EXPORT MedialAxis
+  class STDMESHERS_EXPORT MedialAxis
   {
   public:
     MedialAxis(const TopoDS_Face&                face,

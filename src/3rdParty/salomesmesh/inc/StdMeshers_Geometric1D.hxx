@@ -30,7 +30,6 @@
 #include "SMESH_StdMeshers.hxx"
 
 #include "StdMeshers_Reversible1D.hxx"
-#include "Utils_SALOME_Exception.hxx"
 
 class STDMESHERS_EXPORT StdMeshers_Geometric1D: public StdMeshers_Reversible1D
 {

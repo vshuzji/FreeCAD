@@ -34,7 +34,7 @@
 #include <windows.h>
 #undef NOMINMAX
 #endif
-#include "NETGENPlugin_NETGEN_2D3D.hxx"
+#include "NETGENPlugin_Hypothesis_2D.hxx"
 #include "NETGENPlugin_Hypothesis.hxx"
 #include "NETGENPlugin_SimpleHypothesis_3D.hxx"
 #include "NETGENPlugin_Mesher.hxx"

@@ -28,20 +28,20 @@
 
 namespace MED
 {
-  MEDWRAPPER_FACTORY_EXPORT
+  SMESH_EXPORT
   EVersion  
   GetVersionId(const std::string& theFileName,
                bool theDoPreCheckInSeparateProcess = false);
 
-  MEDWRAPPER_FACTORY_EXPORT
+  SMESH_EXPORT
     bool getMEDVersion( const std::string&, int&, int&, int& );
   
-  MEDWRAPPER_FACTORY_EXPORT
+  SMESH_EXPORT
   PWrapper 
   CrWrapper(const std::string& theFileName,
             bool theDoPreCheckInSeparateProcess = false);
 
-  MEDWRAPPER_FACTORY_EXPORT
+  SMESH_EXPORT
   PWrapper 
   CrWrapper(const std::string& theFileName, EVersion theId);
 }

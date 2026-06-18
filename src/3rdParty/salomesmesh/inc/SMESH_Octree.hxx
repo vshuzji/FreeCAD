@@ -29,9 +29,9 @@
 #ifndef _SMESH_OCTREE_HXX_
 #define _SMESH_OCTREE_HXX_
 
-#include "SMESH_Utils.hxx"
 #include "SMESH_tree.hxx"
-#include <Standard_Version.hxx>
+#include "SMESH_SMESH.hxx"
+
 #if OCC_VERSION_HEX >= 0x080000
 #include <Bnd_B3.hxx>
 #else
@@ -46,7 +46,7 @@
  * - descendant*    newChild() const; // a new child instance
  * - void           buildChildrenData(); // Fill in data of the children
  */
-class SMESHUtils_EXPORT SMESH_Octree : public SMESH_Tree< Bnd_B3d, 8 >
+class SMESH_EXPORT SMESH_Octree : public SMESH_Tree< Bnd_B3d, 8 >
 {
 public:
   typedef SMESH_Tree< Bnd_B3d, 8> TBaseTree;

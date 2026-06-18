@@ -30,7 +30,7 @@
 
 #include "Driver_SMESHDS_Mesh.h"
 
-class MESHDRIVERDAT_EXPORT DriverDAT_W_SMESHDS_Mesh: public Driver_SMESHDS_Mesh
+class DRIVERDAT_EXPORT DriverDAT_W_SMESHDS_Mesh: public Driver_SMESHDS_Mesh
 {};
 
 #endif

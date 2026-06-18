@@ -23,6 +23,8 @@
 #define MED_GaussDef_HeaderFile
 
 #include "MED_WrapperBase.hxx"
+#include "SMESH_SMESH.hxx"
+
 
 //#include "MED_GaussUtils.hxx" <<<---- avoid dependence on boost
 #include <vector>
@@ -53,10 +55,10 @@ namespace MED
      * variant == 2 refers to the same doc v6.4 by J.P. LEFEBVRE, X. DESROCHES, 03/07/03
      * variant == 3 refers to the same doc v6.4, second variant for 2D elements
      */
-    MEDWRAPPER_EXPORT TGaussDef(const int geomType, const int nbPoints, const int variant=1);
+    SMESH_EXPORT TGaussDef(const int geomType, const int nbPoints, const int variant=1);
 
-    MEDWRAPPER_EXPORT int dim() const { return myType/100; }
-    MEDWRAPPER_EXPORT int nbPoints() const { return myWeights.capacity(); }
+    SMESH_EXPORT int dim() const { return myType/100; }
+    SMESH_EXPORT int nbPoints() const { return myWeights.capacity(); }
 
   private:
     void add(const double x, const double weight);

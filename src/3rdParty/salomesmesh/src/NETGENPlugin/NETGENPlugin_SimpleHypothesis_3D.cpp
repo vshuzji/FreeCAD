@@ -30,7 +30,7 @@
 #include <windows.h>
 #undef NOMINMAX
 #endif
-#include "NETGENPlugin_SimpleHypothesis_3D.hxx"
+#include "NETGENPlugin_Hypothesis_3D_i.hxx"
 #include "NETGENPlugin_Hypothesis.hxx"
 
 #include <SMESH_ControlsDef.hxx>

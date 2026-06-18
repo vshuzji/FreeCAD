@@ -51,7 +51,7 @@ if(FREECAD_USE_PCH)
     )
 endif(FREECAD_USE_PCH)
 
-target_link_libraries(Start ${Start_LIBS})
+target_link_libraries(Start ${Start_LIBS} Qt6::Core)
 if (FREECAD_WARN_ERROR)
     target_compile_warn_error(Start)
 endif()

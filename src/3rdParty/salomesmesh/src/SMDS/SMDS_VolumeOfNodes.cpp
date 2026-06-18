@@ -30,7 +30,6 @@
 #include "SMDS_MeshNode.hxx"
 #include "SMDS_SetIterator.hxx"
 #include "SMDS_VolumeTool.hxx"
-#include "SMDS_Mesh.hxx"
 #include "utilities.h"
 
 using namespace std;

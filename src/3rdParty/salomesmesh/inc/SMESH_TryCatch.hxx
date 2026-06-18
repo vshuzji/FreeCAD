@@ -26,10 +26,7 @@
 #ifndef __SMESH_TryCatch_HXX__
 #define __SMESH_TryCatch_HXX__
 
-#include "SMESH_Comment.hxx"
-#include "SMESH_ComputeError.hxx"
-#include "SMESH_Utils.hxx"
-
+#include "SMESH_SMESH.hxx"
 #include <Utils_SALOME_Exception.hxx>
 #include <Standard_Failure.hxx>
 #include <Standard_ErrorHandler.hxx>
@@ -137,8 +134,8 @@
 
 namespace SMESH
 {
-  SMESHUtils_EXPORT void throwSalomeEx(const char* txt);
-  SMESHUtils_EXPORT void doNothing(const char* txt);
+  SMESH_EXPORT void throwSalomeEx(const char* txt);
+  SMESH_EXPORT void doNothing(const char* txt);
 }
 
 #endif

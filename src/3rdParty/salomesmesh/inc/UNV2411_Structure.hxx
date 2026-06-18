@@ -32,7 +32,7 @@ namespace UNV2411{
   
   typedef int TNodeLab; // type of node label
 
-  struct MESHDRIVERUNV_EXPORT TRecord{
+  struct DRIVERUNV_EXPORT TRecord{
     TRecord();
     TNodeLab label;
     int exp_coord_sys_num;  // export coordinate system number
@@ -43,10 +43,10 @@ namespace UNV2411{
   
   typedef std::vector<TRecord> TDataSet;
 
-  MESHDRIVERUNV_EXPORT void
+  DRIVERUNV_EXPORT void
     Read(std::ifstream& in_stream, TDataSet& theDataSet);
 
-  MESHDRIVERUNV_EXPORT void
+  DRIVERUNV_EXPORT void
     Write(std::ofstream& out_stream, const TDataSet& theDataSet);
 
 };

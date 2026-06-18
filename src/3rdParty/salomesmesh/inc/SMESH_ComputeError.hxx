@@ -25,6 +25,7 @@
 #define SMESH_ComputeError_HeaderFile
 
 #include "SMESH_Utils.hxx"
+#include "SMESH_SMESH.hxx"
 
 #include <string>
 #include <list>
@@ -69,7 +70,7 @@ enum SMESH_ComputeErrorName
  */
 // =============================================================
 
-struct SMESHUtils_EXPORT SMESH_ComputeError
+struct SMESH_ComputeError
 {
   int               myName; //!< SMESH_ComputeErrorName or anything algo specific
   std::string       myComment;

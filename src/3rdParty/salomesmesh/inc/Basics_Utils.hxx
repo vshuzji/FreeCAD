@@ -40,12 +40,13 @@
 #pragma comment(lib,"winmm.lib")
 #endif
 
+#include "SMESH_DriverSTL.hxx"
 
 namespace Kernel_Utils
 {
-  BASICS_EXPORT std::string GetHostname();
+  DRIVERSTL_EXPORT std::string GetHostname();
 
-  class BASICS_EXPORT Localizer
+  class DRIVERSTL_EXPORT Localizer
   {
   public:
     Localizer();

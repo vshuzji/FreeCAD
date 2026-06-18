@@ -1,3 +1,11 @@
+include_directories(${CMAKE_SOURCE_DIR}/src/3rdParty/PyCXX)
+include_directories(${CMAKE_SOURCE_DIR}/src/3rdParty/fastsignals/include)
+include_directories(E:/Python/Python312/include)
+
+if(MSVC)
+    add_compile_options("/utf-8")
+endif()
+
 if(BUILD_ADDONMGR)
   if( NOT EXISTS "${CMAKE_SOURCE_DIR}/src/Mod/AddonManager/CMakeLists.txt" )
     message(FATAL_ERROR "The Addon Manager has been moved into a git submodule. Please run

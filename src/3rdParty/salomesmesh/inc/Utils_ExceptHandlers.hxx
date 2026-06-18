@@ -30,12 +30,13 @@
 #define Utils_ExceptHandlers_HeaderFile
 
 #include "SALOME_Utils.hxx"
+#include "SMESH_SMESH.hxx"
 
 #include <stdexcept>
 
 typedef void (*PVF)();
 
-class UTILS_EXPORT Unexpect { //save / retrieve unexpected exceptions treatment
+class SMESH_EXPORT Unexpect { //save / retrieve unexpected exceptions treatment
   PVF old;
   public :
 #ifndef _MSC_VER
@@ -50,7 +51,7 @@ class UTILS_EXPORT Unexpect { //save / retrieve unexpected exceptions treatment
 #endif
 };
 
-class UTILS_EXPORT Terminate {//save / retrieve terminate function
+class SMESH_EXPORT Terminate {//save / retrieve terminate function
   
   PVF old;
   public :
@@ -84,7 +85,7 @@ inline void FuncName () {\
 
 
 //Definitions :
-UTILS_EXPORT extern void SalomeException();
-UTILS_EXPORT extern void SALOME_SalomeException();
+SMESH_EXPORT extern void SalomeException();
+SMESH_EXPORT extern void SALOME_SalomeException();
 
 #endif

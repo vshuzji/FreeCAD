@@ -41,7 +41,6 @@
 #include "SMESH_OctreeNode.hxx"
 #include "SMESH_subMesh.hxx"
 
-#include "Utils_SALOME_Exception.hxx"
 #include "utilities.h"
 
 #include <BRepBndLib.hxx>

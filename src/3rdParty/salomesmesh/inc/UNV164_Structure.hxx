@@ -73,7 +73,7 @@ namespace UNV164
 {
   enum { LENGTH_FACTOR, FORCE_FACTOR, TEMP_FACTOR, TEMP_OFFSET };
 
-  struct MESHDRIVERUNV_EXPORT TRecord
+  struct DRIVERUNV_EXPORT TRecord
   {
     int         units_code;
     std::string units_description;
@@ -82,10 +82,10 @@ namespace UNV164
     TRecord();
   };
   
-  MESHDRIVERUNV_EXPORT void
+  DRIVERUNV_EXPORT void
   Read(std::ifstream& in_stream, TRecord& theUnitsRecord);
 
-  MESHDRIVERUNV_EXPORT void
+  DRIVERUNV_EXPORT void
   Write(std::ofstream& out_stream );
 
 };

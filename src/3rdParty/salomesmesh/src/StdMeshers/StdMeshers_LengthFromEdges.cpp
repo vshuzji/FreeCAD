@@ -39,9 +39,8 @@ using namespace std;
 //=============================================================================
 
 StdMeshers_LengthFromEdges::StdMeshers_LengthFromEdges(int hypId, int studyId, SMESH_Gen* gen)
-  : SMESH_Hypothesis(hypId, studyId, gen)
+  : SMESH_Hypothesis(hypId, studyId, gen), _mode(1)
 {
-  _mode =1;
   _name = "LengthFromEdges";
   _param_algo_dim = 2; // is used by SMESH_MEFISTO_2D
 }

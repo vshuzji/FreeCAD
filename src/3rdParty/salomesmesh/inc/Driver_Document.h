@@ -29,7 +29,7 @@
 
 class SMESHDS_Document;
 
-class MESHDRIVER_EXPORT Driver_Document
+class DRIVER_EXPORT Driver_Document
 {
  public:
   Driver_Document();

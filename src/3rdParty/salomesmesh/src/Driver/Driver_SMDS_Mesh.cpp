@@ -25,7 +25,7 @@
 using namespace std;
 
 Driver_SMDS_Mesh::Driver_SMDS_Mesh():
-  myMesh(NULL)
+  myMesh(nullptr)
 {}
 
 void Driver_SMDS_Mesh::SetMesh(SMDS_Mesh *theMesh)

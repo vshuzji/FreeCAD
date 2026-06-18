@@ -30,7 +30,7 @@
 #define SMDS_ElemIterator_HeaderFile
 
 #include "SMDS_Iterator.hxx"
-#include <boost/shared_ptr.hpp>
+#include <boost/smart_ptr/shared_ptr.hpp>
 
 class SMDS_MeshElement;
 class SMDS_MeshNode;

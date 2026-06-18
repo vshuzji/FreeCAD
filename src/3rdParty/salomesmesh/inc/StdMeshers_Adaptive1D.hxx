@@ -29,7 +29,6 @@
 
 #include "StdMeshers_Regular_1D.hxx"
 
-#include "Utils_SALOME_Exception.hxx"
 
 /*!
  * \brief Adaptive 1D hypothesis

@@ -33,7 +33,7 @@ namespace MED
   typedef TVector<TCoordSlice> TCoordSliceArr;
 
   //! Define a helper class to handle Gauss Points coordinates
-  class MEDWRAPPER_EXPORT TGaussCoord:
+  class SMESH_EXPORT TGaussCoord:
     virtual TModeSwitchInfo 
   {
     TInt myNbElem;
@@ -80,7 +80,7 @@ namespace MED
 
   //---------------------------------------------------------------
   //! To calculate Gauss Points coordinates
-  MEDWRAPPER_EXPORT 
+  SMESH_EXPORT
   bool
   GetGaussCoord3D(const TGaussInfo& theGaussInfo, 
                   const TCellInfo& theCellInfo,
@@ -92,7 +92,7 @@ namespace MED
 
   //---------------------------------------------------------------
   //! To calculate Gauss Points coordinates for defined TCellInfo as its bary center
-  MEDWRAPPER_EXPORT 
+  SMESH_EXPORT
   bool
   GetBaryCenter(const TCellInfo& theCellInfo,
                 const TNodeInfo& theNodeInfo,
@@ -101,7 +101,7 @@ namespace MED
                 EModeSwitch theMode = eFULL_INTERLACE);
 
   //! To calculate Gauss Points coordinates for defined TPolygoneInfo as its bary center
-  MEDWRAPPER_EXPORT 
+  SMESH_EXPORT
   bool
   GetBaryCenter(const TPolygoneInfo& thePolygoneInfo,
                 const TNodeInfo& theNodeInfo,
@@ -110,7 +110,7 @@ namespace MED
                 EModeSwitch theMode = eFULL_INTERLACE);
 
   //! To calculate Gauss Points coordinates for defined TPolyedreInfo as its bary center
-  MEDWRAPPER_EXPORT 
+  SMESH_EXPORT
   bool
   GetBaryCenter(const TPolyedreInfo& thePolyedreInfo,
                 const TNodeInfo& theNodeInfo,
@@ -121,7 +121,7 @@ namespace MED
   //---------------------------------------------------------------
   //! Shape function definitions
   //---------------------------------------------------------------
-  struct MEDWRAPPER_EXPORT TShapeFun
+  struct SMESH_EXPORT TShapeFun
   {
     class TFun;
     

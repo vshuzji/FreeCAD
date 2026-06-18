@@ -44,10 +44,14 @@ set(VCPKG_MANIFEST_MODE OFF)
 set(VTK_MODULE_ENABLE_VTK_hdf5 OFF)
 set(VTK_MODULE_ENABLE_VTK_GUISupport OFF)
 
+set(Boost_USE_STATIC_LIBS OFF)# vcpkg 默认是 DLL
+set(Boost_USE_MULTITHREADED ON)
+set(Boost_USE_STATIC_RUNTIME OFF)
+
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-
+include_directories(${CMAKE_SOURCE_DIR}/src/3rdParty/fastsignals/include)
 if(FREECAD_USE_CCACHE)
     find_program(CCACHE_PROGRAM ccache)  #This check should occur before project()
     if(CCACHE_PROGRAM)
@@ -161,6 +165,7 @@ if(NOT FREECAD_LIBPACK_USE OR FREECAD_LIBPACK_CHECKFILE_CLBUNDLER OR FREECAD_LIB
     endif(BUILD_GUI)
 
     # SetupCoin3D can overwrite find_package(Boost) output so keep this after.
+    find_package(Coin CONFIG REQUIRED)
     SetupBoost()
 
     if(BUILD_BIM)

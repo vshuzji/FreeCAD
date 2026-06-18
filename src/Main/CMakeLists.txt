@@ -3,6 +3,18 @@
 configure_file(freecad.rc.cmake ${CMAKE_CURRENT_BINARY_DIR}/freecad.rc)
 configure_file(freecadCmd.rc.cmake ${CMAKE_CURRENT_BINARY_DIR}/freecadCmd.rc)
 file(COPY icon.ico DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+include_directories(${CMAKE_SOURCE_DIR}/src/3rdParty/PyCXX)
+# =========================
+# Qt6 + fmt（保留）
+# =========================
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Xml)
+find_package(fmt CONFIG REQUIRED)
+find_package(Python REQUIRED COMPONENTS Interpreter Development)
+
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
 
 ######################## FreeCADMain ########################
 if(BUILD_GUI)
@@ -13,46 +25,46 @@ if(BUILD_GUI)
         MainGui.cpp
     )
 
-    SET(FreeCAD_LIBS
-        FreeCADGui
+add_executable(FreeCADMain WIN32 ${FreeCAD_SRCS})
+
+target_link_libraries(FreeCADMain
+    PRIVATE
+    FreeCADGui
+    FreeCADApp
+    Qt6::Core
+    Qt6::Gui
+    Qt6::Widgets
+)
+
+if(BUILD_TEST)
+    add_dependencies(FreeCADMain TestSources)
+    add_dependencies(FreeCADMain TestGuiSources)
+endif()
+
+if(FREECAD_WARN_ERROR)
+    target_compile_warn_error(FreeCADMain)
+endif()
+
+SET_BIN_DIR(FreeCADMain FreeCAD)
+
+if(WIN32)
+    INSTALL(TARGETS FreeCADMain
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     )
-
-    if(NOT BUILD_DYNAMIC_LINK_PYTHON)
-        # executables have to be linked against python libraries,
-        # because extension modules are not.
-        list(APPEND FreeCAD_LIBS
-            ${Python3_LIBRARIES}
-        )
-    endif(NOT BUILD_DYNAMIC_LINK_PYTHON)
-
-    add_executable(FreeCADMain WIN32 ${FreeCAD_SRCS})
-    target_link_libraries(FreeCADMain ${FreeCAD_LIBS})
-    if(BUILD_TEST)
-        add_dependencies(FreeCADMain TestSources)
-        add_dependencies(FreeCADMain TestGuiSources)
-    endif()
-    if (FREECAD_WARN_ERROR)
-        target_compile_warn_error(FreeCADMain)
-    endif()
-
-    SET_BIN_DIR(FreeCADMain FreeCAD)
-
-    if(WIN32)
-        INSTALL(TARGETS FreeCADMain
-            RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-            LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-        )
-    elseif(APPLE AND NOT BUILD_WITH_CONDA)
-        INSTALL(TARGETS FreeCADMain
+elseif(APPLE AND NOT BUILD_WITH_CONDA)
+    INSTALL(TARGETS FreeCADMain
         RUNTIME DESTINATION MacOS
-            LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-        )
-    else()
-        INSTALL(TARGETS FreeCADMain
-            RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-        )
-    endif()
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    )
+else()
+    INSTALL(TARGETS FreeCADMain
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    )
+endif()
+
 endif(BUILD_GUI)
+
 ######################## FreeCADMainCmd ########################
 
 SET(FreeCADMainCmd_SRCS
@@ -62,28 +74,20 @@ SET(FreeCADMainCmd_SRCS
 )
 
 add_executable(FreeCADMainCmd ${FreeCADMainCmd_SRCS})
+
 if(BUILD_TEST)
     add_dependencies(FreeCADMainCmd TestSources)
 endif()
 
-SET(FreeCADMainCmd_LIBS
-    FreeCADApp
-    ${QtCore_LIBRARIES}
-    ${QtXml_LIBRARIES}
-)
-
-if(NOT BUILD_DYNAMIC_LINK_PYTHON)
-    # executables have to be linked against python libraries,
-    # because extension modules are not.
-    list(APPEND FreeCADMainCmd_LIBS
-        ${Python3_LIBRARIES}
-    )
-endif(NOT BUILD_DYNAMIC_LINK_PYTHON)
-
 target_link_libraries(FreeCADMainCmd
-    ${FreeCADMainCmd_LIBS}
+    PRIVATE
+    FreeCADApp
+    Qt6::Core
+    fmt::fmt
+    Python::Python
 )
-if (FREECAD_WARN_ERROR)
+
+if(FREECAD_WARN_ERROR)
     target_compile_warn_error(FreeCADMainCmd)
 endif()
 
@@ -113,8 +117,15 @@ SET(FreeCADMainPy_SRCS
 
 add_library(FreeCADMainPy SHARED ${FreeCADMainPy_SRCS})
 
-target_link_libraries(FreeCADMainPy FreeCADApp)
-if (FREECAD_WARN_ERROR)
+target_link_libraries(FreeCADMainPy
+    PRIVATE
+    FreeCADApp
+    Qt6::Core
+    fmt::fmt
+    Python::Python
+)
+
+if(FREECAD_WARN_ERROR)
     target_compile_warn_error(FreeCADMainPy)
 endif()
 
@@ -126,80 +137,60 @@ if(WIN32)
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     )
-else(WIN32)
+else()
     INSTALL(TARGETS FreeCADMainPy
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     )
-endif(WIN32)
+endif()
 
 ######################## FreeCADGuiPy ########################
 if(BUILD_GUI)
+
     set(FreeCADGuiPy_SRCS
-            FreeCADGuiPy.cpp
-        )
+        FreeCADGuiPy.cpp
+    )
 
-        add_library(FreeCADGuiPy SHARED ${FreeCADGuiPy_SRCS})
+add_library(FreeCADGuiPy SHARED ${FreeCADGuiPy_SRCS})
 
-        target_link_libraries(FreeCADGuiPy
-            PRIVATE
-            FreeCADGui
-        )
+target_link_libraries(FreeCADGuiPy
+    PRIVATE
+    FreeCADGui
+    FreeCADApp
+)
 
-        # =========================
-        # 关键修复：避免 Ninja / MSVC 输出冲突
-        # =========================
-        set_target_properties(FreeCADGuiPy PROPERTIES
+set_target_properties(FreeCADGuiPy PROPERTIES
+    DEBUG_POSTFIX "_d"
+    OUTPUT_NAME "FreeCADGuiPy"
+    PDB_NAME_DEBUG "FreeCADGuiPy_d"
+    PDB_NAME_RELEASE "FreeCADGuiPy"
+)
 
-            # 防止 Debug/Release 共享同名 lib
-            DEBUG_POSTFIX "_d"
-            RELEASE_POSTFIX ""
+SET_BIN_DIR(FreeCADGuiPy FreeCADGui)
+SET_PYTHON_PREFIX_SUFFIX(FreeCADGuiPy)
 
-            # 明确输出名字（避免和 FreeCADGui 冲突）
-            OUTPUT_NAME "FreeCADGuiPy"
+if(WIN32)
 
-            # PDB 防冲突（MSVC / Ninja Debug）
-            PDB_NAME_DEBUG "FreeCADGuiPy_d"
-            PDB_NAME_RELEASE "FreeCADGuiPy"
-        )
+    set_target_properties(FreeCADGuiPy PROPERTIES
+        ARCHIVE_OUTPUT_NAME "FreeCADGuiPy"
+        LIBRARY_OUTPUT_NAME "FreeCADGuiPy"
+        RUNTIME_OUTPUT_NAME "FreeCADGuiPy"
 
-        # =========================
-        # Python module 属性（非常重要）
-        # =========================
-        SET_BIN_DIR(FreeCADGuiPy FreeCADGui)
-        SET_PYTHON_PREFIX_SUFFIX(FreeCADGuiPy)
+        ARCHIVE_OUTPUT_NAME_DEBUG "FreeCADGuiPy_d"
+        LIBRARY_OUTPUT_NAME_DEBUG "FreeCADGuiPy_d"
+        RUNTIME_OUTPUT_NAME_DEBUG "FreeCADGuiPy_d"
+    )
 
-        # =========================
-        # Windows 特殊处理（避免 .lib 冲突）
-        # =========================
-        if(WIN32)
+endif()
 
-            # Python extension DLL 不要和 .lib 名字混乱
-            set_target_properties(FreeCADGuiPy PROPERTIES
-                ARCHIVE_OUTPUT_NAME "FreeCADGuiPy"
-                LIBRARY_OUTPUT_NAME "FreeCADGuiPy"
-                RUNTIME_OUTPUT_NAME "FreeCADGuiPy"
-            )
+if(WIN32)
+    install(TARGETS FreeCADGuiPy
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    )
+else()
+    install(TARGETS FreeCADGuiPy
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    )
+endif()
 
-            # Debug 明确后缀（防 Ninja 生成冲突）
-            set_target_properties(FreeCADGuiPy PROPERTIES
-                ARCHIVE_OUTPUT_NAME_DEBUG "FreeCADGuiPy_d"
-                LIBRARY_OUTPUT_NAME_DEBUG "FreeCADGuiPy_d"
-                RUNTIME_OUTPUT_NAME_DEBUG "FreeCADGuiPy_d"
-            )
-
-        endif()
-
-        # =========================
-        # install
-        # =========================
-        if(WIN32)
-            install(TARGETS FreeCADGuiPy
-                RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-                LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-            )
-        else()
-            install(TARGETS FreeCADGuiPy
-                LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-            )
-        endif()
 endif(BUILD_GUI)

@@ -40,7 +40,6 @@
 #include "SMESH_subMesh.hxx"
 #include "SMESH_subMeshEventListener.hxx"
 
-#include "Utils_SALOME_Exception.hxx"
 #include "utilities.h"
 
 #include <BRep_Builder.hxx>

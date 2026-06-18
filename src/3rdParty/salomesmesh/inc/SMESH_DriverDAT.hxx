@@ -28,13 +28,13 @@
 #define _SMESH_DriverDAT_HXX_
 
 #ifdef WIN32
- #if defined MESHDRIVERDAT_EXPORTS || defined MeshDriverDAT_EXPORTS
-  #define MESHDRIVERDAT_EXPORT __declspec( dllexport )
+ #if defined DRIVERDAT_EXPORTS || defined DriverDAT_EXPORTS
+  #define DRIVERDAT_EXPORT __declspec( dllexport )
  #else
-  #define MESHDRIVERDAT_EXPORT __declspec( dllimport )
+  #define DRIVERDAT_EXPORT __declspec( dllimport )
  #endif
 #else
- #define MESHDRIVERDAT_EXPORT
+ #define DRIVERDAT_EXPORT
 #endif
 
 #endif

@@ -32,10 +32,11 @@
 #include "DriverMED.hxx"
 
 #include "SMDS_Mesh.hxx"
+#include "SMESH_SMDS.hxx"
 #include "SMESHDS_GroupBase.hxx"
 #include "SMESHDS_SubMesh.hxx"
 #include "MED_Common.hxx"
-
+#include "SMESH_SMESH.hxx"
 #include <boost/shared_ptr.hpp>
 #include <set>
 
@@ -54,7 +55,7 @@ typedef std::map<int,SMESHDS_SubMesh*               > SMESHDS_SubMeshPtrMap;
 typedef std::list<SMESHDS_GroupBase*                > SMESHDS_GroupBasePtrList;
 typedef std::set<const SMDS_MeshElement*,TIDCompare > ElementsSet;
 
-class MESHDRIVERMED_EXPORT DriverMED_Family
+class SMESH_EXPORT DriverMED_Family
 {
  public:
 

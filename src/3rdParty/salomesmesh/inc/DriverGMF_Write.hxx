@@ -38,7 +38,7 @@
 /*!
  * \brief Class for storing control points for writing GMF size maps
  */
-class MESHDriverGMF_EXPORT Control_Pnt : public gp_Pnt
+class SMESH_EXPORT Control_Pnt : public gp_Pnt
 {
 public:
   Control_Pnt();
@@ -56,7 +56,7 @@ private:
 /*!
  * \brief Driver Writing a mesh into a GMF file.
  */
-class MESHDriverGMF_EXPORT DriverGMF_Write : public Driver_SMESHDS_Mesh
+class SMESH_EXPORT DriverGMF_Write : public Driver_SMESHDS_Mesh
 {
 public:
 

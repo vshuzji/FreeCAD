@@ -28,13 +28,13 @@
 #define _SMESH_DriverUNV_HXX_
 
 #ifdef WIN32
- #if defined MESHDRIVERUNV_EXPORTS || defined MeshDriverUNV_EXPORTS
-  #define MESHDRIVERUNV_EXPORT __declspec( dllexport )
+ #if defined DRIVERUNV_EXPORTS || defined DriverUNV_EXPORTS
+  #define DRIVERUNV_EXPORT __declspec( dllexport )
  #else
-  #define MESHDRIVERUNV_EXPORT __declspec( dllimport )
+  #define DRIVERUNV_EXPORT __declspec( dllimport )
  #endif
 #else
- #define MESHDRIVERUNV_EXPORT
+ #define DRIVERUNV_EXPORT
 #endif
 
 #endif

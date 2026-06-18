@@ -2,6 +2,9 @@
 
 add_library(FreeCADBase SHARED)
 
+
+include_directories(${CMAKE_SOURCE_DIR}/src/3rdParty/PyCXX)
+
 if(WIN32)
     add_definitions(-DFCBase)
     add_definitions(-DPYCXX_DLL)

@@ -56,7 +56,9 @@ target_include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
 )
 
-target_link_libraries(Spreadsheet ${Spreadsheet_LIBS})
+find_package(Boost REQUIRED COMPONENTS algorithm)
+include_directories(${Boost_INCLUDE_DIRS} G:/vcpkg/installed/x64-windows/include)
+target_link_libraries(Spreadsheet ${Spreadsheet_LIBS} Boost::algorithm Qt6::QLocale)
 
 if (MSVC)
     target_compile_options(Spreadsheet PRIVATE /wd4251 /wd4275)

@@ -24,10 +24,12 @@
 #define _INCLUDE_DRIVER_SMESHDS_MESH
 
 #include "Driver_Mesh.h"
+#include "SMESH_ComputeError.hxx"
+#include "SMESH_SMDS.hxx"
 
 class SMESHDS_Mesh;
 
-class MESHDRIVER_EXPORT Driver_SMESHDS_Mesh: public Driver_Mesh
+class DRIVER_EXPORT Driver_SMESHDS_Mesh: public Driver_Mesh
 {
  public:
   Driver_SMESHDS_Mesh();

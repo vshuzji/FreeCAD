@@ -27,7 +27,7 @@
 
 class SMDS_Mesh;
 
-class MESHDRIVER_EXPORT Driver_SMDS_Mesh: public Driver_Mesh
+class DRIVER_EXPORT Driver_SMDS_Mesh: public Driver_Mesh
 {
  public:
   Driver_SMDS_Mesh();
